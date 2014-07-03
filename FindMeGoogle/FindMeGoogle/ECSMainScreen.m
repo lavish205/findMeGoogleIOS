@@ -7,9 +7,11 @@
 //
 
 #import "ECSMainScreen.h"
-
+#import "ECSMapView.h"
 @interface ECSMainScreen ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic,retain) ECSMapView *mapView;
+- (IBAction)clickToMapView:(id)sender;
 
 @end
 
@@ -36,4 +38,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickToMapView:(id)sender {
+    self.mapView = [[ECSMapView alloc]initWithNibName:@"ECSMapView" bundle:nil];
+    [self.navigationController pushViewController:self.mapView animated:YES];
+}
 @end
