@@ -13,8 +13,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[ECSViewController alloc]initWithNibName:@"ECSViewController" bundle:nil];
-    [self.window setRootViewController:self.viewController];
+    self.viewController = [[ECSLandingPage alloc]initWithNibName:@"ECSLandingPage" bundle:nil];
+    self.navigationController = [[UINavigationController alloc]initWithRootViewController:self.viewController];
+    [self.window setRootViewController:self.navigationController];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

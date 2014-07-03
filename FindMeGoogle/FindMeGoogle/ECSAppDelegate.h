@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSViewController.h"
+#import "ECSLandingPage.h"
 @interface ECSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong,nonatomic) ECSViewController *viewController;
+@property (strong,nonatomic) ECSLandingPage *viewController;
+@property (strong,nonatomic) UINavigationController *navigationController;
 @end
