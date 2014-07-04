@@ -49,8 +49,8 @@
 		8B366E4219658632001A5C7D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B366E4119658632001A5C7D /* CoreData.framework */; };
 		8B366E461965877F001A5C7D /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B366E451965877F001A5C7D /* GoogleMaps.framework */; };
 		8B366E481965879F001A5C7D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B366E471965879F001A5C7D /* GoogleMaps.bundle */; };
-		8B366E4C19658CB4001A5C7D /* ECSMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B366E4A19658CB4001A5C7D /* ECSMapView.m */; };
-		8B366E4D19658CB4001A5C7D /* ECSMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B366E4B19658CB4001A5C7D /* ECSMapView.xib */; };
+		8B3F068A1966854100FC035A /* ECSMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F06881966854100FC035A /* ECSMapView.m */; };
+		8B3F068B1966854100FC035A /* ECSMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3F06891966854100FC035A /* ECSMapView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,9 +127,9 @@
 		8B366E4119658632001A5C7D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8B366E451965877F001A5C7D /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		8B366E471965879F001A5C7D /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		8B366E4919658CB4001A5C7D /* ECSMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSMapView.h; sourceTree = "<group>"; };
-		8B366E4A19658CB4001A5C7D /* ECSMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSMapView.m; sourceTree = "<group>"; };
-		8B366E4B19658CB4001A5C7D /* ECSMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSMapView.xib; sourceTree = "<group>"; };
+		8B3F06871966854100FC035A /* ECSMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSMapView.h; sourceTree = "<group>"; };
+		8B3F06881966854100FC035A /* ECSMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSMapView.m; sourceTree = "<group>"; };
+		8B3F06891966854100FC035A /* ECSMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSMapView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,9 +226,9 @@
 				8B2D5897196557090061D4E5 /* ECSMainScreen.h */,
 				8B2D5898196557090061D4E5 /* ECSMainScreen.m */,
 				8B2D5899196557090061D4E5 /* ECSMainScreen.xib */,
-				8B366E4919658CB4001A5C7D /* ECSMapView.h */,
-				8B366E4A19658CB4001A5C7D /* ECSMapView.m */,
-				8B366E4B19658CB4001A5C7D /* ECSMapView.xib */,
+				8B3F06871966854100FC035A /* ECSMapView.h */,
+				8B3F06881966854100FC035A /* ECSMapView.m */,
+				8B3F06891966854100FC035A /* ECSMapView.xib */,
 				8B2D57AC19654AFB0061D4E5 /* Images.xcassets */,
 				8B2D5868196555F60061D4E5 /* Third Party */,
 				8B2D57A119654AFB0061D4E5 /* Supporting Files */,
@@ -411,7 +411,7 @@
 				8B2D589B196557090061D4E5 /* ECSMainScreen.xib in Resources */,
 				8B366E481965879F001A5C7D /* GoogleMaps.bundle in Resources */,
 				8B2D57AD19654AFB0061D4E5 /* Images.xcassets in Resources */,
-				8B366E4D19658CB4001A5C7D /* ECSMapView.xib in Resources */,
+				8B3F068B1966854100FC035A /* ECSMapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +441,7 @@
 				8B2D5889196555F60061D4E5 /* TPKeyboardAvoidingTableView.m in Sources */,
 				8B2D57A719654AFB0061D4E5 /* main.m in Sources */,
 				8B2D5887196555F60061D4E5 /* iToast.m in Sources */,
-				8B366E4C19658CB4001A5C7D /* ECSMapView.m in Sources */,
+				8B3F068A1966854100FC035A /* ECSMapView.m in Sources */,
 				8B2D5890196555F60061D4E5 /* UIButton+WebCache.m in Sources */,
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
 				8B2D588C196555F60061D4E5 /* SDWebImageDecoder.m in Sources */,
@@ -572,6 +572,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FindMeGoogle/FindMeGoogle-Prefix.pch";
 				INFOPLIST_FILE = "FindMeGoogle/FindMeGoogle-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -590,6 +591,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FindMeGoogle/FindMeGoogle-Prefix.pch";
 				INFOPLIST_FILE = "FindMeGoogle/FindMeGoogle-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
