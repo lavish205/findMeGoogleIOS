@@ -54,9 +54,6 @@
                                             <state key="normal" title="POLICE">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="clickToMapView:" destination="-1" eventType="touchUpInside" id="PEu-hy-G8b"/>
-                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fgn-uf-r2p">
                                             <rect key="frame" x="10" y="205" width="145" height="145"/>
@@ -64,11 +61,11 @@
                                             <color key="backgroundColor" red="0.31764705882352939" green="0.59999999999999998" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="ATM">
+                                            <state key="normal" title="Detail">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="clickToMapView:" destination="-1" eventType="touchUpInside" id="UBP-xj-irc"/>
+                                                <action selector="detailView:" destination="-1" eventType="touchUpInside" id="esv-CI-ZWP"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="evH-Kp-0sn">
@@ -77,11 +74,11 @@
                                             <color key="backgroundColor" red="0.70588235294117641" green="0.76078431372549016" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="CAFE">
+                                            <state key="normal" title="Setting">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="clickToMapView:" destination="-1" eventType="touchUpInside" id="f0G-nR-wzt"/>
+                                                <action selector="settingpage:" destination="-1" eventType="touchUpInside" id="Llj-cg-Ojn"/>
                                             </connections>
                                         </button>
                                     </subviews>

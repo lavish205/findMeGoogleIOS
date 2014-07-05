@@ -8,10 +8,14 @@
 
 #import "ECSMainScreen.h"
 #import "ECSMapView.h"
+#import "ECSSettingPage.h"
 @interface ECSMainScreen ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain) ECSMapView *mapView;
+@property (nonatomic,retain)ECSSettingPage *settingPage;
 - (IBAction)clickToMapView:(id)sender;
+- (IBAction)settingpage:(id)sender;
+- (IBAction)detailView:(id)sender;
 
 @end
 
@@ -41,5 +45,13 @@
 - (IBAction)clickToMapView:(id)sender {
     self.mapView = [[ECSMapView alloc]initWithNibName:@"ECSMapView" bundle:nil];
     [self.navigationController pushViewController:self.mapView animated:YES];
+}
+
+- (IBAction)settingpage:(id)sender {
+    self.settingPage = [[ECSSettingPage alloc]initWithNibName:@"ECSSettingPage" bundle:nil];
+    [self.navigationController pushViewController:self.settingPage animated:NO];
+}
+
+- (IBAction)detailView:(id)sender {
 }
 @end

@@ -15,6 +15,7 @@
 }
 @property (nonatomic,retain) NSString *lat;
 @property (nonatomic,retain) NSString *lng;
+@property (nonatomic,retain) NSMutableArray *placeId;
 @end
 
 @implementation ECSMapView
@@ -53,9 +54,6 @@
     //adding compass button on map
     mapView.settings.compassButton =YES;
     
-    //addding myLocation Button on map
-    mapView.settings.myLocationButton =YES;
-    
     //adding map to application view
     self.view = mapView;
     
@@ -69,24 +67,11 @@
     marker.flat = YES;
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.map = mapView;
-   
-    
-    
-    //adding a polyline between two markers
-    GMSMutablePath *path = [GMSMutablePath path];
-    [path addCoordinate:CLLocationCoordinate2DMake(28.617401, 77.381254)];
-    [path addCoordinate:CLLocationCoordinate2DMake(28.817401, 77.881254)];
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-   
-    polyline.map = mapView;
-    
-    
-    
+ 
     
     //json
-    //request stuff
- //   NSString *searchString = [NSString stringWithFormat:@"Jaipur"];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.617401,77.381254&radius=10000&types=hospital&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4"];
+ 
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.617401,77.381254&radius=10000&types=police&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4"];
     
     NSURL *requestURL = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
@@ -117,7 +102,8 @@
  
         NSString *title = [dict valueForKey:@"name"];
         NSString *desrciption = [dict valueForKey:@"vicinity"];
-        
+
+       
         GMSMarker *marker1 = [[GMSMarker alloc]init];
         marker1.position = CLLocationCoordinate2DMake(lat,lng);
     
@@ -125,10 +111,10 @@
         marker1.snippet = desrciption;
         marker1.appearAnimation = kGMSMarkerAnimationPop;
         marker1.icon = [UIImage imageWithData:iconData scale:4];
-        
+        marker1.flat = YES;
         marker1.map = mapView;
     }
-    
+ 
 }
 
 - (void)didReceiveMemoryWarning
