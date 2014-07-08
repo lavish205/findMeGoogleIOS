@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ECSSettingPage">
             <connections>
+                <outlet property="activity" destination="epw-C5-cyO" id="9cC-la-0cU"/>
+                <outlet property="settingLowerView" destination="8XU-cT-em5" id="lAv-Et-qDl"/>
+                <outlet property="settingUpperView" destination="VIz-jN-EqY" id="xdv-ht-Q0a"/>
                 <outlet property="tblView" destination="qqV-2v-SJg" id="Ec1-S7-rI7"/>
                 <outlet property="txtSearchPlace" destination="FcP-Vy-Ubp" id="MKH-rZ-gGM"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -20,57 +23,67 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="l6J-cg-uxV" customClass="TPKeyboardAvoidingScrollView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        </scrollView>
                         <view contentMode="scaleToFill" id="VIz-jN-EqY">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="292"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xyT-ta-VL4">
+                                    <rect key="frame" x="20" y="73" width="100" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <pickerView contentMode="scaleToFill" id="IXs-ry-EJH">
+                                    <rect key="frame" x="20" y="93" width="280" height="162"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="EVh-8y-xp4"/>
+                                        <outlet property="delegate" destination="-1" id="tMq-J4-EY6"/>
+                                    </connections>
+                                </pickerView>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="2GI-Zo-LaM">
+                                    <rect key="frame" x="20" y="263" width="280" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="User Location"/>
+                                        <segment title="Select City"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
                         </view>
-                        <pickerView contentMode="scaleToFill" id="IXs-ry-EJH">
-                            <rect key="frame" x="0.0" y="80" width="320" height="162"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="EVh-8y-xp4"/>
-                                <outlet property="delegate" destination="-1" id="tMq-J4-EY6"/>
-                            </connections>
-                        </pickerView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xyT-ta-VL4">
-                            <rect key="frame" x="10" y="81" width="100" height="21"/>
+                        <view contentMode="scaleToFill" id="8XU-cT-em5">
+                            <rect key="frame" x="0.0" y="292" width="320" height="276"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="2GI-Zo-LaM">
-                            <rect key="frame" x="20" y="263" width="268" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="User Location"/>
-                                <segment title="Select City"/>
-                            </segments>
-                        </segmentedControl>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" minimumFontSize="17" id="FcP-Vy-Ubp">
-                            <rect key="frame" x="20" y="312" width="268" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <action selector="finishEditing:" destination="-1" eventType="editingDidEndOnExit" id="O4u-L7-M4t"/>
-                                <outlet property="delegate" destination="-1" id="R4s-N8-2Dr"/>
-                            </connections>
-                        </textField>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qqV-2v-SJg">
-                            <rect key="frame" x="20" y="342" width="268" height="193"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="5HX-eC-eIA"/>
-                                <outlet property="delegate" destination="-1" id="0EO-Dl-Abg"/>
-                            </connections>
-                        </tableView>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" minimumFontSize="17" id="FcP-Vy-Ubp">
+                                    <rect key="frame" x="20" y="10" width="280" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="clickToType:" destination="-1" eventType="editingDidBegin" id="1Gi-oy-TPU"/>
+                                        <action selector="finishEditing:" destination="-1" eventType="editingDidEndOnExit" id="O4u-L7-M4t"/>
+                                        <outlet property="delegate" destination="-1" id="R4s-N8-2Dr"/>
+                                    </connections>
+                                </textField>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qqV-2v-SJg">
+                                    <rect key="frame" x="20" y="42" width="280" height="220"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="5HX-eC-eIA"/>
+                                        <outlet property="delegate" destination="-1" id="0EO-Dl-Abg"/>
+                                    </connections>
+                                </tableView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="epw-C5-cyO">
+                                    <rect key="frame" x="150" y="128" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
