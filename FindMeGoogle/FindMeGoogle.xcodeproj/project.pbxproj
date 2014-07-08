@@ -51,10 +51,19 @@
 		8B366E481965879F001A5C7D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B366E471965879F001A5C7D /* GoogleMaps.bundle */; };
 		8B3F068A1966854100FC035A /* ECSMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F06881966854100FC035A /* ECSMapView.m */; };
 		8B3F068B1966854100FC035A /* ECSMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3F06891966854100FC035A /* ECSMapView.xib */; };
+		8B9F66FD196BC1B20054A060 /* ECSJSONParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */; };
+		8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */; };
+		8B9F6702196BC5760054A060 /* ECSPlaceDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */; };
+		8B9F670D196BCC590054A060 /* ECSJSONPlaceSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F6704196BCC590054A060 /* ECSJSONPlaceSearch.m */; };
+		8B9F670E196BCC590054A060 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F6706196BCC590054A060 /* Result.m */; };
+		8B9F670F196BCC590054A060 /* ResultGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F6708196BCC590054A060 /* ResultGeometry.m */; };
+		8B9F6710196BCC590054A060 /* ResultGeometryLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F670A196BCC590054A060 /* ResultGeometryLocation.m */; };
+		8B9F6711196BCC590054A060 /* ResultGeometryLocationn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F670C196BCC590054A060 /* ResultGeometryLocationn.m */; };
+		8BBA97D8196BD21900BC2E57 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBA97D5196BD21900BC2E57 /* call.png */; };
+		8BBA97D9196BD21900BC2E57 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBA97D6196BD21900BC2E57 /* home.png */; };
+		8BBA97DA196BD21900BC2E57 /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBA97D7196BD21900BC2E57 /* review.png */; };
 		8BDF2A5E1967E08D004E4B91 /* ECSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF2A5C1967E08D004E4B91 /* ECSTableView.m */; };
 		8BDF2A5F1967E08D004E4B91 /* ECSTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BDF2A5D1967E08D004E4B91 /* ECSTableView.xib */; };
-		8BDF2A631967E1BF004E4B91 /* ECSJSONPlacesParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF2A611967E1BF004E4B91 /* ECSJSONPlacesParsing.m */; };
-		8BDF2A641967E1BF004E4B91 /* ECSJSONPlacesParsing.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BDF2A621967E1BF004E4B91 /* ECSJSONPlacesParsing.xib */; };
 		8BF77D311967FEA4003E479E /* ECSSettingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */; };
 		8BF77D321967FEA4003E479E /* ECSSettingPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF77D301967FEA4003E479E /* ECSSettingPage.xib */; };
 /* End PBXBuildFile section */
@@ -136,12 +145,27 @@
 		8B3F06871966854100FC035A /* ECSMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSMapView.h; sourceTree = "<group>"; };
 		8B3F06881966854100FC035A /* ECSMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSMapView.m; sourceTree = "<group>"; };
 		8B3F06891966854100FC035A /* ECSMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSMapView.xib; sourceTree = "<group>"; };
+		8B9F66FB196BC1B20054A060 /* ECSJSONParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONParsing.h; sourceTree = "<group>"; };
+		8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONParsing.m; sourceTree = "<group>"; };
+		8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSPlaceDetail.h; sourceTree = "<group>"; };
+		8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSPlaceDetail.m; sourceTree = "<group>"; };
+		8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSPlaceDetail.xib; sourceTree = "<group>"; };
+		8B9F6703196BCC590054A060 /* ECSJSONPlaceSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlaceSearch.h; sourceTree = "<group>"; };
+		8B9F6704196BCC590054A060 /* ECSJSONPlaceSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlaceSearch.m; sourceTree = "<group>"; };
+		8B9F6705196BCC590054A060 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		8B9F6706196BCC590054A060 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
+		8B9F6707196BCC590054A060 /* ResultGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultGeometry.h; sourceTree = "<group>"; };
+		8B9F6708196BCC590054A060 /* ResultGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultGeometry.m; sourceTree = "<group>"; };
+		8B9F6709196BCC590054A060 /* ResultGeometryLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultGeometryLocation.h; sourceTree = "<group>"; };
+		8B9F670A196BCC590054A060 /* ResultGeometryLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultGeometryLocation.m; sourceTree = "<group>"; };
+		8B9F670B196BCC590054A060 /* ResultGeometryLocationn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultGeometryLocationn.h; sourceTree = "<group>"; };
+		8B9F670C196BCC590054A060 /* ResultGeometryLocationn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultGeometryLocationn.m; sourceTree = "<group>"; };
+		8BBA97D5196BD21900BC2E57 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
+		8BBA97D6196BD21900BC2E57 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		8BBA97D7196BD21900BC2E57 /* review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = review.png; sourceTree = "<group>"; };
 		8BDF2A5B1967E08D004E4B91 /* ECSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSTableView.h; sourceTree = "<group>"; };
 		8BDF2A5C1967E08D004E4B91 /* ECSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSTableView.m; sourceTree = "<group>"; };
 		8BDF2A5D1967E08D004E4B91 /* ECSTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSTableView.xib; sourceTree = "<group>"; };
-		8BDF2A601967E1BF004E4B91 /* ECSJSONPlacesParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlacesParsing.h; sourceTree = "<group>"; };
-		8BDF2A611967E1BF004E4B91 /* ECSJSONPlacesParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlacesParsing.m; sourceTree = "<group>"; };
-		8BDF2A621967E1BF004E4B91 /* ECSJSONPlacesParsing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSJSONPlacesParsing.xib; sourceTree = "<group>"; };
 		8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSSettingPage.h; sourceTree = "<group>"; };
 		8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSSettingPage.m; sourceTree = "<group>"; };
 		8BF77D301967FEA4003E479E /* ECSSettingPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSSettingPage.xib; sourceTree = "<group>"; };
@@ -233,6 +257,8 @@
 		8B2D57A019654AFB0061D4E5 /* FindMeGoogle */ = {
 			isa = PBXGroup;
 			children = (
+				8B9F66EB196BBC9E0054A060 /* ParsingClasses */,
+				8BBA97D4196BD21900BC2E57 /* images */,
 				8B2D57A919654AFB0061D4E5 /* ECSAppDelegate.h */,
 				8B2D57AA19654AFB0061D4E5 /* ECSAppDelegate.m */,
 				8B2D5892196556630061D4E5 /* ECSLandingPage.h */,
@@ -241,18 +267,20 @@
 				8B2D5897196557090061D4E5 /* ECSMainScreen.h */,
 				8B2D5898196557090061D4E5 /* ECSMainScreen.m */,
 				8B2D5899196557090061D4E5 /* ECSMainScreen.xib */,
+				8B9F66FB196BC1B20054A060 /* ECSJSONParsing.h */,
+				8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */,
 				8B3F06871966854100FC035A /* ECSMapView.h */,
 				8B3F06881966854100FC035A /* ECSMapView.m */,
 				8B3F06891966854100FC035A /* ECSMapView.xib */,
 				8BDF2A5B1967E08D004E4B91 /* ECSTableView.h */,
 				8BDF2A5C1967E08D004E4B91 /* ECSTableView.m */,
 				8BDF2A5D1967E08D004E4B91 /* ECSTableView.xib */,
-				8BDF2A601967E1BF004E4B91 /* ECSJSONPlacesParsing.h */,
-				8BDF2A611967E1BF004E4B91 /* ECSJSONPlacesParsing.m */,
-				8BDF2A621967E1BF004E4B91 /* ECSJSONPlacesParsing.xib */,
 				8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */,
 				8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */,
 				8BF77D301967FEA4003E479E /* ECSSettingPage.xib */,
+				8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */,
+				8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */,
+				8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */,
 				8B2D57AC19654AFB0061D4E5 /* Images.xcassets */,
 				8B2D5868196555F60061D4E5 /* Third Party */,
 				8B2D57A119654AFB0061D4E5 /* Supporting Files */,
@@ -354,6 +382,33 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		8B9F66EB196BBC9E0054A060 /* ParsingClasses */ = {
+			isa = PBXGroup;
+			children = (
+				8B9F6703196BCC590054A060 /* ECSJSONPlaceSearch.h */,
+				8B9F6704196BCC590054A060 /* ECSJSONPlaceSearch.m */,
+				8B9F6705196BCC590054A060 /* Result.h */,
+				8B9F6706196BCC590054A060 /* Result.m */,
+				8B9F6707196BCC590054A060 /* ResultGeometry.h */,
+				8B9F6708196BCC590054A060 /* ResultGeometry.m */,
+				8B9F6709196BCC590054A060 /* ResultGeometryLocation.h */,
+				8B9F670A196BCC590054A060 /* ResultGeometryLocation.m */,
+				8B9F670B196BCC590054A060 /* ResultGeometryLocationn.h */,
+				8B9F670C196BCC590054A060 /* ResultGeometryLocationn.m */,
+			);
+			path = ParsingClasses;
+			sourceTree = "<group>";
+		};
+		8BBA97D4196BD21900BC2E57 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8BBA97D5196BD21900BC2E57 /* call.png */,
+				8BBA97D6196BD21900BC2E57 /* home.png */,
+				8BBA97D7196BD21900BC2E57 /* review.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -431,10 +486,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B2D57A519654AFB0061D4E5 /* InfoPlist.strings in Resources */,
+				8BBA97D8196BD21900BC2E57 /* call.png in Resources */,
+				8BBA97D9196BD21900BC2E57 /* home.png in Resources */,
 				8B2D5896196556630061D4E5 /* ECSLandingPage.xib in Resources */,
-				8BDF2A641967E1BF004E4B91 /* ECSJSONPlacesParsing.xib in Resources */,
 				8B2D589B196557090061D4E5 /* ECSMainScreen.xib in Resources */,
 				8BDF2A5F1967E08D004E4B91 /* ECSTableView.xib in Resources */,
+				8B9F6702196BC5760054A060 /* ECSPlaceDetail.xib in Resources */,
+				8BBA97DA196BD21900BC2E57 /* review.png in Resources */,
 				8B366E481965879F001A5C7D /* GoogleMaps.bundle in Resources */,
 				8B2D57AD19654AFB0061D4E5 /* Images.xcassets in Resources */,
 				8BF77D321967FEA4003E479E /* ECSSettingPage.xib in Resources */,
@@ -459,19 +517,25 @@
 			files = (
 				8B2D589A196557090061D4E5 /* ECSMainScreen.m in Sources */,
 				8B2D5895196556630061D4E5 /* ECSLandingPage.m in Sources */,
+				8B9F66FD196BC1B20054A060 /* ECSJSONParsing.m in Sources */,
 				8B2D588A196555F60061D4E5 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
 				8B2D588E196555F60061D4E5 /* SDWebImageManager.m in Sources */,
+				8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */,
+				8B9F670E196BCC590054A060 /* Result.m in Sources */,
 				8B2D57AB19654AFB0061D4E5 /* ECSAppDelegate.m in Sources */,
+				8B9F670D196BCC590054A060 /* ECSJSONPlaceSearch.m in Sources */,
 				8B2D5888196555F60061D4E5 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8B2D5891196555F60061D4E5 /* UIImageView+WebCache.m in Sources */,
+				8B9F670F196BCC590054A060 /* ResultGeometry.m in Sources */,
 				8B2D588D196555F60061D4E5 /* SDWebImageDownloader.m in Sources */,
-				8BDF2A631967E1BF004E4B91 /* ECSJSONPlacesParsing.m in Sources */,
 				8B2D5889196555F60061D4E5 /* TPKeyboardAvoidingTableView.m in Sources */,
 				8B2D57A719654AFB0061D4E5 /* main.m in Sources */,
+				8B9F6710196BCC590054A060 /* ResultGeometryLocation.m in Sources */,
 				8B2D5887196555F60061D4E5 /* iToast.m in Sources */,
 				8BF77D311967FEA4003E479E /* ECSSettingPage.m in Sources */,
 				8B3F068A1966854100FC035A /* ECSMapView.m in Sources */,
 				8B2D5890196555F60061D4E5 /* UIButton+WebCache.m in Sources */,
+				8B9F6711196BCC590054A060 /* ResultGeometryLocationn.m in Sources */,
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
 				8B2D588C196555F60061D4E5 /* SDWebImageDecoder.m in Sources */,
 				8B2D588B196555F60061D4E5 /* SDImageCache.m in Sources */,

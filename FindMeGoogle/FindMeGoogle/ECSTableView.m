@@ -7,9 +7,11 @@
 //
 
 #import "ECSTableView.h"
-
+#import "ECSPlaceDetail.h"
+#import "ECSPlaceDetail.h"
 @interface ECSTableView ()
 <UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,retain) ECSPlaceDetail *placeDetail;
 @end
 
 @implementation ECSTableView
@@ -25,16 +27,18 @@
 
 - (void)viewDidLoad
 {
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+ 
     
 }
-
 
 //table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 1;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -42,9 +46,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = @"hi";
+    return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.placeDetail = [[ECSPlaceDetail alloc]initWithNibName:@"ECSPlaceDetail" bundle:nil];
+    [self.navigationController pushViewController:self.placeDetail animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

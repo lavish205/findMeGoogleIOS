@@ -8,19 +8,10 @@
 
 #import "ECSJSONPlacesParsing.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "ECSTableView.h"
 @interface ECSJSONPlacesParsing ()
-<GMSMapViewDelegate>
-{
-    GMSMapView *mapView;
-}
-@property (nonatomic,retain) NSString *lat;
-@property (nonatomic,retain) NSString *lng;
-@property (nonatomic,retain) NSString *placeId;
-@property (nonatomic,retain) NSData *iconData;
-@property (nonatomic,retain) NSString *title;
-@property (nonatomic,retain) NSString *description;
-@property (nonatomic,retain) NSString *photoReference;
-@property (nonatomic,retain) NSString *type;
+@property (nonatomic,retain)NSMutableArray *array;
+
 @end
 
 @implementation ECSJSONPlacesParsing
@@ -60,6 +51,7 @@
     
     
     for (NSDictionary *dict in resposeArray) {
+        
         self.lat = [[[dict objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lat"];
         
         self.lng = [[[dict objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lng"];
@@ -73,20 +65,13 @@
         self.description = [dict valueForKey:@"vicinity"];
         
         self.placeId = [dict valueForKey:@"place_id"];
+    
         
-        GMSMarker *marker1 = [[GMSMarker alloc]init];
-        marker1.position = CLLocationCoordinate2DMake(lat,lng);
-        
-        marker1.title = self.title;
-        marker1.snippet = self.description;
-        marker1.appearAnimation = kGMSMarkerAnimationPop;
-        marker1.icon = [UIImage imageWithData:self.iconData scale:4];
-        marker1.flat = YES;
-        marker1.map = mapView;
+     
+        [self.array addObject:self];
     
     }
     
-
 
     
 }

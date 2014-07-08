@@ -9,9 +9,13 @@
 #import "ECSSettingPage.h"
 
 @interface ECSSettingPage ()
-<UIPickerViewDataSource,UIPickerViewDelegate>
+<UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic,retain) NSMutableArray *rangePrefix;
 @property (nonatomic,retain) NSArray *rangeSufix;
+@property (weak, nonatomic) IBOutlet UITableView *tblView;
+@property (weak, nonatomic) IBOutlet UITextField *txtSearchPlace;
+- (IBAction)finishEditing:(id)sender;
+@property (nonatomic,retain) NSMutableArray *resultArray;
 @end
 
 @implementation ECSSettingPage
@@ -28,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tblView setHidden:YES];
+    self.resultArray = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view from its nib.
     self.rangePrefix = [[NSMutableArray alloc]init];
     for(int i=500; i<=50000; i++)
@@ -36,9 +42,37 @@
             [self.rangePrefix addObject:[NSString stringWithFormat:@"%i",i]];
     }
     self.rangeSufix = [[NSArray alloc]initWithObjects:@"Meter",@"Km", nil];
+    
+    
 }
 
-// returns the number of 'columns' to display.
+//method for fetching places with same starting text
+-(void)generateRequestForText:(NSString *)text
+{
+    [self.resultArray removeAllObjects];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&language=en&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",text];
+    
+    NSURL *requestURL = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
+    
+   
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+
+    
+    NSError *jsonParsingError = nil;
+    NSDictionary *placesResult = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+    NSArray *resposeArray = [[NSArray alloc]init];
+    resposeArray = [placesResult objectForKey:@"predictions"];
+    for (NSDictionary *dict in resposeArray) {
+        
+        [self.resultArray addObject:[dict valueForKey:@"description"]];
+    }
+    
+    [self.tblView reloadData];
+}
+
+//picker view methods
+// returns the number of 'columns' to display in picker view,
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 2;
@@ -60,6 +94,7 @@
 {
     if (component == 0)
         return [self.rangePrefix objectAtIndex:row];
+    
     else
         return [self.rangeSufix objectAtIndex:row];
     //ArraysOFArrays = Array1 & Array2
@@ -71,10 +106,54 @@
 }
 
 
+//table View
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.resultArray count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if(cell==nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = [self.resultArray objectAtIndex:indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.txtSearchPlace.text = [self.resultArray objectAtIndex:indexPath.row];
+}
+
+
+
+//textfield delegate method
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(!self.txtSearchPlace.text.length == 0)
+    {
+        NSString *text = self.txtSearchPlace.text;
+        [self.tblView setHidden:NO];
+        [self generateRequestForText:text];
+        NSLog(@"called");
+    }
+    else
+        [self.tblView setHidden:YES];
+    return YES;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)finishEditing:(id)sender {
+    [sender resignFirstResponder];
+}
 @end

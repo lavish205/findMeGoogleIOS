@@ -9,10 +9,13 @@
 #import "ECSMainScreen.h"
 #import "ECSMapView.h"
 #import "ECSSettingPage.h"
+#import "ECSTableView.h"
+
 @interface ECSMainScreen ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic,retain) ECSMapView *mapView;
 @property (nonatomic,retain)ECSSettingPage *settingPage;
+@property (nonatomic,retain)ECSTableView *tableView;
 - (IBAction)clickToMapView:(id)sender;
 - (IBAction)settingpage:(id)sender;
 - (IBAction)detailView:(id)sender;
@@ -34,6 +37,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,5 +57,7 @@
 }
 
 - (IBAction)detailView:(id)sender {
+    self.tableView = [[ECSTableView alloc]initWithNibName:@"ECSTableView" bundle:nil];
+    [self.navigationController pushViewController:self.tableView animated:YES];
 }
 @end
