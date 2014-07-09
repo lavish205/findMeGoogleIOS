@@ -48,6 +48,7 @@
     self.rangeSufix = [[NSArray alloc]initWithObjects:@"Meter",@"Km", nil];
     [self.activity stopAnimating];
     
+    
 }
 
 //method for fetching places with same starting text
@@ -143,7 +144,8 @@
 //textfield delegate method
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if(!self.txtSearchPlace.text.length == 0)
+    
+    if(!((self.txtSearchPlace.text.length)-(range.length)) == 0)
     {
         NSString *text = self.txtSearchPlace.text;
         [self.tblView setHidden:NO];

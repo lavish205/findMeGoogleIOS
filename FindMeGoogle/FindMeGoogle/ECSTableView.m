@@ -8,6 +8,9 @@
 
 #import "ECSTableView.h"
 #import "ECSPlaceDetail.h"
+#import "Result.h"
+#import "ResultGeometry.h"
+#import "ResultGeometryLocationn.h"
 #import "ECSPlaceDetail.h"
 @interface ECSTableView ()
 <UITableViewDataSource,UITableViewDelegate>

@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECSJSONPlaceSearch.h"
+
+
+
 
 @interface ECSMapView : UIViewController
+
+
+-(id)initWithJsonSearch:(ECSJSONPlaceSearch *)search;
+
 
 @end

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ECSMainScreen">
             <connections>
+                <outlet property="activity" destination="4CB-eX-mNj" id="Bp9-Sn-TUq"/>
                 <outlet property="scrollView" destination="Lc3-s3-05D" id="9yM-xs-Uwn"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -81,6 +82,11 @@
                                                 <action selector="settingpage:" destination="-1" eventType="touchUpInside" id="Llj-cg-Ojn"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="4CB-eX-mNj">
+                                            <rect key="frame" x="142" y="230" width="37" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="color" red="0.074509806931018829" green="0.15294118225574493" blue="0.28235295414924622" alpha="1" colorSpace="deviceRGB"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </scrollView>
                                 <searchBar contentMode="redraw" placeholder="Find Me What?" id="mnS-Pr-jkJ">

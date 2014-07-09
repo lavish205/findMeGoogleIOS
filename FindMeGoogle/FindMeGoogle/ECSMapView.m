@@ -9,6 +9,10 @@
 #import "ECSMapView.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "ECSPlaceDetail.h"
+#import "Result.h"
+#import "ResultGeometry.h"
+#import "ResultGeometryLocationn.h"
+#import <CoreLocation/CoreLocation.h>
 @interface ECSMapView ()
 <GMSMapViewDelegate>
 {
@@ -20,9 +24,18 @@
 @property (nonatomic,retain) NSMutableArray *placeId;
 @property (nonatomic,retain) UIActivityIndicatorView *activity;
 @property (nonatomic,retain) NSData *response;
+@property (nonatomic,retain) CLLocationManager *locationManager;
+@property (nonatomic, retain) ECSJSONPlaceSearch * searchObject;
 @end
 
 @implementation ECSMapView
+
+-(id)initWithJsonSearch:(ECSJSONPlaceSearch *)search
+{
+    self = [self initWithNibName:@"ECSMapView" bundle:nil];
+    self.searchObject = search;
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,10 +51,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [self.locationManager startUpdatingLocation];
 
-    
+   
     //setting camera for viewing the map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:28.617401	 longitude:77.381254 zoom:10];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:11];
     
     //adding camera to mapview
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
@@ -72,69 +89,64 @@
     //adding marker to map
     GMSMarker *marker = [[GMSMarker alloc]init];
     marker.position = CLLocationCoordinate2DMake(28.617401, 77.381254);
-    marker.title = @"Here I am";
-    marker.snippet = @"Your current location";
+    marker.title = @"You";
+    marker.snippet = @"This is your current location";
     marker.flat = YES;
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.map = mapView;
  
-    [self performSelectorInBackground:@selector(fetchResult) withObject:self];
-    [self.activity startAnimating];
-    
+    if([self.searchObject.status isEqualToString:@"OK"])
+    {
+        [self showOnMap];
+    }
+    if([self.searchObject.status isEqualToString:@"ZERO_RESULTS"])
+    {
+        [self showAlertWithMessage:@"zero data found"];
+    }
+    if([self.searchObject.status isEqualToString:@"OVER_QUERY_LIMIT"])
+    {
+        [self showAlertWithMessage:@"request of the day is over quota"];
+    }
+    if([self.searchObject.status isEqualToString:@"REQUEST_DENIED"])
+    {
+        [self showAlertWithMessage:@"application map place search key is not valid"];
+    }
+    if([self.searchObject.status isEqualToString:@"INVALID_REQUEST"])
+    {
+        [self showAlertWithMessage:@"required parameter missing"];
+    }
     
  
 }
 
-
-
--(void)fetchResult{
-    
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.617401,77.381254&radius=10000&types=gym&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4"];
-    
-    NSURL *requestURL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
-    
-    //response
-    self.response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
- 
-    //    NSString * responsestring = [[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding];
-    //
-    //
-    //    NSLog(@"%@",responsestring);
-    [self performSelectorOnMainThread:@selector(showOnMap) withObject:self waitUntilDone:NO];
+-(void)showAlertWithMessage:(NSString*)message
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
 }
+
+
 -(void)showOnMap
 {
-    [self.activity stopAnimating];
-    NSError *jsonParsingError = nil;
-    NSDictionary *locationResults = [NSJSONSerialization JSONObjectWithData:self.response options:0 error:&jsonParsingError];
-    NSArray *resposeArray = [[NSArray alloc]init];
-    resposeArray = [locationResults objectForKey:@"results"];
-    for (NSDictionary *dict in resposeArray) {
-        self.lat = [[[dict objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lat"];
+    for (Result * result in self.searchObject.results) {
+        ResultGeometry *geo = result.geometry;
+        ResultGeometryLocationn *loc = geo.location;
         
-        self.lng = [[[dict objectForKey:@"geometry"] objectForKey:@"location"] valueForKey:@"lng"];
-        
-        CLLocationDegrees lat = (double)[self.lat floatValue];
-        CLLocationDegrees lng = (double)[self.lng floatValue];
-        
-        NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"icon"]]];
-        
-        NSString *title = [dict valueForKey:@"name"];
-        NSString *desrciption = [dict valueForKey:@"vicinity"];
-        
-        
+        CLLocationDegrees lat = (double)[loc.lat floatValue];
+        CLLocationDegrees lng = (double)[loc.lng floatValue];
+       
+        NSData *iconData = [NSData dataWithContentsOfURL:[NSURL URLWithString:result.icon]];
         GMSMarker *marker1 = [[GMSMarker alloc]init];
         marker1.position = CLLocationCoordinate2DMake(lat,lng);
-        
-        marker1.title = title;
-        marker1.snippet = desrciption;
+        marker1.title = result.name;
+        marker1.snippet = result.vicinity;
         marker1.appearAnimation = kGMSMarkerAnimationPop;
         marker1.icon = [UIImage imageWithData:iconData scale:4];
         marker1.flat = YES;
         marker1.map = mapView;
      
     }
+    [self.activity stopAnimating];
 }
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
