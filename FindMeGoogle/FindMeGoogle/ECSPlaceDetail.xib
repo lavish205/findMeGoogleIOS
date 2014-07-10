@@ -17,6 +17,7 @@
                 <outlet property="tableView" destination="NJW-Zc-2Na" id="6ox-uk-O4f"/>
                 <outlet property="txtratings" destination="AZp-DO-JB8" id="Hi7-t3-rM7"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="viewImage" destination="V6c-cQ-x8p" id="1eA-h7-3SB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -80,10 +81,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LK7-K0-jxe">
+                        <view contentMode="scaleToFill" id="V6c-cQ-x8p">
                             <rect key="frame" x="10" y="0.0" width="300" height="256"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        </imageView>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LK7-K0-jxe">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="256"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" id="FZt-Ak-0nb">
                             <rect key="frame" x="10" y="265" width="300" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -19,12 +19,16 @@
 #import "ECSPlaceDetailCustomCell.h"
 @interface ECSPlaceDetail ()
 <UITableViewDataSource,UITableViewDelegate>
-
+{
+    int count;
+}
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *sectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *placeImage;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (weak, nonatomic) IBOutlet UIView *viewImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *txtratings;
 @property (nonatomic,retain) NSData *imageData;
 @property (nonatomic,retain) NSString *imageString;
@@ -57,22 +61,63 @@
     return self;
 }
 
--(void)applyingFetchedResult
-{
 
-}
 - (void)viewDidLoad
 {
+    count = 0;
     self.picArray = [[NSMutableArray alloc]init];
     self.photoArray = [[Photo alloc]init];
-    
+    [self.activity stopAnimating];
+    [self.mainActivity stopAnimating];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.tableView.tableHeaderView = self.headerView;
-    
     [self performSelectorInBackground:@selector(fetchData) withObject:self];
+    UISwipeGestureRecognizer *gestureRecognizerLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
+    [gestureRecognizerLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    
+    
+    
+    UISwipeGestureRecognizer *gestureRecognizerRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
+    [gestureRecognizerRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.viewImage addGestureRecognizer:gestureRecognizerRight];
+    [self.viewImage addGestureRecognizer:gestureRecognizerLeft];
    
     
+}
+-(void)swipeLeft:(UITapGestureRecognizer *)recognizer
+{
+    
+    if(count < ([self.picArray count]-1))
+    {
+        count++;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.activity startAnimating];
+            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]];
+            [self.activity stopAnimating];
+        }];
+
+    }
+    else
+        NSLog(@"No other image");
+    
+    
+}
+-(void)swipeRight:(UITapGestureRecognizer *)recognizer
+{
+  
+    if(count>0)
+    {
+        count--;
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.activity startAnimating];
+            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]];
+            [self.activity stopAnimating];
+        }];
+        
+    }
+    else
+        NSLog(@"No other image");
 }
 -(void)showAlertWithMessage:(NSString*)message
 {
@@ -83,6 +128,7 @@
 {
     NSLog(@"Started fetching the data");
     [self.mainActivity startAnimating];
+    [self.activity startAnimating];
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.place_id];
     NSLog(@"%@",urlString);
     NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -159,6 +205,8 @@
         NSLog(@"fetching image over");
         [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]]];
         [self.activity stopAnimating];
+        
+        
     }
     else
     {
@@ -176,7 +224,11 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+ 
+       
     [[NSBundle mainBundle]loadNibNamed:@"ECSPlaceDetailCustomCell" owner:self options:nil];
+   
+    
     ECSPlaceDetailCustomCell * cell = self.listCell;
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     NSLog(@"%@",self.result.reviews);
@@ -198,5 +250,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    count = 0;
+    self.picArray = nil;
+}
 @end
