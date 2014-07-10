@@ -83,7 +83,7 @@
     [self.navigationController pushViewController:self.mapView animated:YES];
 }
 - (IBAction)clickToMapView:(id)sender {
-    [self performSelectorInBackground:@selector(fetchData:) withObject:@"gym"];
+    [self performSelectorInBackground:@selector(fetchData:) withObject:@"embassy"];
     [self.activity startAnimating];
 }
 

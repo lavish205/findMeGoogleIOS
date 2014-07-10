@@ -13,12 +13,11 @@
 #import "ResultGeometry.h"
 #import "ResultGeometryLocationn.h"
 #import <CoreLocation/CoreLocation.h>
+#import "ECSTableView.h"
 @interface ECSMapView ()
 <GMSMapViewDelegate>
 {
-    GMSMapView *mapView;
-    GMSPanoramaView *panoView;
-}
+    GMSMapView *mapView;}
 @property (nonatomic,retain) NSString *lat;
 @property (nonatomic,retain) NSString *lng;
 @property (nonatomic,retain) NSMutableArray *placeId;
@@ -56,7 +55,13 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [self.locationManager startUpdatingLocation];
 
-   
+    //adding button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"Switch to Table View" forState:UIControlStateNormal];
+    [button sizeToFit];
+    [button addTarget:self action:@selector(switchToTable) forControlEvents:UIControlEventTouchUpInside];
+    button.center = CGPointMake(100, 500);
+    
     //setting camera for viewing the map
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:11];
     
@@ -78,22 +83,13 @@
     [mapView setDelegate:self];
     //adding map to application view
     self.view = mapView;
-    
-   
+    [mapView addSubview:button];
     
     self.activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.activity setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width/2,[UIScreen mainScreen].bounds.size.height/2)];
     [self.activity setColor:[UIColor blackColor]];
     [mapView addSubview:self.activity];
-    
-    //adding marker to map
-    GMSMarker *marker = [[GMSMarker alloc]init];
-    marker.position = CLLocationCoordinate2DMake(28.617401, 77.381254);
-    marker.title = @"You";
-    marker.snippet = @"This is your current location";
-    marker.flat = YES;
-    marker.appearAnimation = kGMSMarkerAnimationPop;
-    marker.map = mapView;
+
  
     if([self.searchObject.status isEqualToString:@"OK"])
     {
@@ -118,7 +114,12 @@
     
  
 }
-
+-(void)switchToTable
+{
+    ECSTableView *tView = [[ECSTableView alloc]initWithJsonSearch:self.searchObject];
+ 
+    [self.navigationController pushViewController:tView animated:YES];
+}
 -(void)showAlertWithMessage:(NSString*)message
 {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];

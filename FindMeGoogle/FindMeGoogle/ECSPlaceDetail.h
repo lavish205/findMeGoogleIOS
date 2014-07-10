@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ECSJSONPlaceSearch;
 @interface ECSPlaceDetail : UIViewController
-
+-(id)initWithPlaceId:(NSString *)placeID;
 @end

@@ -51,7 +51,14 @@
 		8B366E481965879F001A5C7D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B366E471965879F001A5C7D /* GoogleMaps.bundle */; };
 		8B3F068A1966854100FC035A /* ECSMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F06881966854100FC035A /* ECSMapView.m */; };
 		8B3F068B1966854100FC035A /* ECSMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3F06891966854100FC035A /* ECSMapView.xib */; };
-		8B9F66FD196BC1B20054A060 /* ECSJSONParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */; };
+		8B5A8E60196D7340005AF45B /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E51196D7340005AF45B /* AddressComponent.m */; };
+		8B5A8E61196D7340005AF45B /* Aspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E53196D7340005AF45B /* Aspect.m */; };
+		8B5A8E62196D7340005AF45B /* ECSJSONPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E55196D7340005AF45B /* ECSJSONPlaceDetail.m */; };
+		8B5A8E63196D7340005AF45B /* ECSJSONPlaceDetailResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E57196D7340005AF45B /* ECSJSONPlaceDetailResult.m */; };
+		8B5A8E64196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E59196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m */; };
+		8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5B196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m */; };
+		8B5A8E66196D7340005AF45B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5D196D7340005AF45B /* Photo.m */; };
+		8B5A8E67196D7340005AF45B /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5F196D7340005AF45B /* Review.m */; };
 		8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */; };
 		8B9F6702196BC5760054A060 /* ECSPlaceDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */; };
 		8B9F670D196BCC590054A060 /* ECSJSONPlaceSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F6704196BCC590054A060 /* ECSJSONPlaceSearch.m */; };
@@ -145,8 +152,22 @@
 		8B3F06871966854100FC035A /* ECSMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSMapView.h; sourceTree = "<group>"; };
 		8B3F06881966854100FC035A /* ECSMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSMapView.m; sourceTree = "<group>"; };
 		8B3F06891966854100FC035A /* ECSMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSMapView.xib; sourceTree = "<group>"; };
-		8B9F66FB196BC1B20054A060 /* ECSJSONParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONParsing.h; sourceTree = "<group>"; };
-		8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONParsing.m; sourceTree = "<group>"; };
+		8B5A8E50196D7340005AF45B /* AddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressComponent.h; sourceTree = "<group>"; };
+		8B5A8E51196D7340005AF45B /* AddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressComponent.m; sourceTree = "<group>"; };
+		8B5A8E52196D7340005AF45B /* Aspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspect.h; sourceTree = "<group>"; };
+		8B5A8E53196D7340005AF45B /* Aspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspect.m; sourceTree = "<group>"; };
+		8B5A8E54196D7340005AF45B /* ECSJSONPlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlaceDetail.h; sourceTree = "<group>"; };
+		8B5A8E55196D7340005AF45B /* ECSJSONPlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlaceDetail.m; sourceTree = "<group>"; };
+		8B5A8E56196D7340005AF45B /* ECSJSONPlaceDetailResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlaceDetailResult.h; sourceTree = "<group>"; };
+		8B5A8E57196D7340005AF45B /* ECSJSONPlaceDetailResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlaceDetailResult.m; sourceTree = "<group>"; };
+		8B5A8E58196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlaceDetailResultGeometry.h; sourceTree = "<group>"; };
+		8B5A8E59196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlaceDetailResultGeometry.m; sourceTree = "<group>"; };
+		8B5A8E5A196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSJSONPlaceDetailResultGeometryLocation.h; sourceTree = "<group>"; };
+		8B5A8E5B196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSJSONPlaceDetailResultGeometryLocation.m; sourceTree = "<group>"; };
+		8B5A8E5C196D7340005AF45B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		8B5A8E5D196D7340005AF45B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		8B5A8E5E196D7340005AF45B /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
+		8B5A8E5F196D7340005AF45B /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSPlaceDetail.h; sourceTree = "<group>"; };
 		8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSPlaceDetail.m; sourceTree = "<group>"; };
 		8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSPlaceDetail.xib; sourceTree = "<group>"; };
@@ -267,20 +288,18 @@
 				8B2D5897196557090061D4E5 /* ECSMainScreen.h */,
 				8B2D5898196557090061D4E5 /* ECSMainScreen.m */,
 				8B2D5899196557090061D4E5 /* ECSMainScreen.xib */,
-				8B9F66FB196BC1B20054A060 /* ECSJSONParsing.h */,
-				8B9F66FC196BC1B20054A060 /* ECSJSONParsing.m */,
 				8B3F06871966854100FC035A /* ECSMapView.h */,
 				8B3F06881966854100FC035A /* ECSMapView.m */,
 				8B3F06891966854100FC035A /* ECSMapView.xib */,
 				8BDF2A5B1967E08D004E4B91 /* ECSTableView.h */,
 				8BDF2A5C1967E08D004E4B91 /* ECSTableView.m */,
 				8BDF2A5D1967E08D004E4B91 /* ECSTableView.xib */,
-				8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */,
-				8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */,
-				8BF77D301967FEA4003E479E /* ECSSettingPage.xib */,
 				8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */,
 				8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */,
 				8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */,
+				8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */,
+				8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */,
+				8BF77D301967FEA4003E479E /* ECSSettingPage.xib */,
 				8B2D57AC19654AFB0061D4E5 /* Images.xcassets */,
 				8B2D5868196555F60061D4E5 /* Third Party */,
 				8B2D57A119654AFB0061D4E5 /* Supporting Files */,
@@ -382,6 +401,29 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		8B5A8E4F196D7340005AF45B /* JSONPlaceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8B5A8E50196D7340005AF45B /* AddressComponent.h */,
+				8B5A8E51196D7340005AF45B /* AddressComponent.m */,
+				8B5A8E52196D7340005AF45B /* Aspect.h */,
+				8B5A8E53196D7340005AF45B /* Aspect.m */,
+				8B5A8E54196D7340005AF45B /* ECSJSONPlaceDetail.h */,
+				8B5A8E55196D7340005AF45B /* ECSJSONPlaceDetail.m */,
+				8B5A8E56196D7340005AF45B /* ECSJSONPlaceDetailResult.h */,
+				8B5A8E57196D7340005AF45B /* ECSJSONPlaceDetailResult.m */,
+				8B5A8E58196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.h */,
+				8B5A8E59196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m */,
+				8B5A8E5A196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.h */,
+				8B5A8E5B196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m */,
+				8B5A8E5C196D7340005AF45B /* Photo.h */,
+				8B5A8E5D196D7340005AF45B /* Photo.m */,
+				8B5A8E5E196D7340005AF45B /* Review.h */,
+				8B5A8E5F196D7340005AF45B /* Review.m */,
+			);
+			path = JSONPlaceDetail;
+			sourceTree = "<group>";
+		};
 		8B9F66EB196BBC9E0054A060 /* ParsingClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +437,7 @@
 				8B9F670A196BCC590054A060 /* ResultGeometryLocation.m */,
 				8B9F670B196BCC590054A060 /* ResultGeometryLocationn.h */,
 				8B9F670C196BCC590054A060 /* ResultGeometryLocationn.m */,
+				8B5A8E4F196D7340005AF45B /* JSONPlaceDetail */,
 			);
 			path = ParsingClasses;
 			sourceTree = "<group>";
@@ -517,7 +560,6 @@
 			files = (
 				8B2D589A196557090061D4E5 /* ECSMainScreen.m in Sources */,
 				8B2D5895196556630061D4E5 /* ECSLandingPage.m in Sources */,
-				8B9F66FD196BC1B20054A060 /* ECSJSONParsing.m in Sources */,
 				8B2D588A196555F60061D4E5 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
 				8B2D588E196555F60061D4E5 /* SDWebImageManager.m in Sources */,
 				8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */,
@@ -525,6 +567,7 @@
 				8B2D57AB19654AFB0061D4E5 /* ECSAppDelegate.m in Sources */,
 				8B9F670D196BCC590054A060 /* ECSJSONPlaceSearch.m in Sources */,
 				8B2D5888196555F60061D4E5 /* TPKeyboardAvoidingScrollView.m in Sources */,
+				8B5A8E63196D7340005AF45B /* ECSJSONPlaceDetailResult.m in Sources */,
 				8B2D5891196555F60061D4E5 /* UIImageView+WebCache.m in Sources */,
 				8B9F670F196BCC590054A060 /* ResultGeometry.m in Sources */,
 				8B2D588D196555F60061D4E5 /* SDWebImageDownloader.m in Sources */,
@@ -532,13 +575,20 @@
 				8B2D57A719654AFB0061D4E5 /* main.m in Sources */,
 				8B9F6710196BCC590054A060 /* ResultGeometryLocation.m in Sources */,
 				8B2D5887196555F60061D4E5 /* iToast.m in Sources */,
+				8B5A8E66196D7340005AF45B /* Photo.m in Sources */,
 				8BF77D311967FEA4003E479E /* ECSSettingPage.m in Sources */,
+				8B5A8E62196D7340005AF45B /* ECSJSONPlaceDetail.m in Sources */,
 				8B3F068A1966854100FC035A /* ECSMapView.m in Sources */,
+				8B5A8E67196D7340005AF45B /* Review.m in Sources */,
 				8B2D5890196555F60061D4E5 /* UIButton+WebCache.m in Sources */,
 				8B9F6711196BCC590054A060 /* ResultGeometryLocationn.m in Sources */,
+				8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */,
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
+				8B5A8E61196D7340005AF45B /* Aspect.m in Sources */,
+				8B5A8E60196D7340005AF45B /* AddressComponent.m in Sources */,
 				8B2D588C196555F60061D4E5 /* SDWebImageDecoder.m in Sources */,
 				8B2D588B196555F60061D4E5 /* SDImageCache.m in Sources */,
+				8B5A8E64196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m in Sources */,
 				8BDF2A5E1967E08D004E4B91 /* ECSTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

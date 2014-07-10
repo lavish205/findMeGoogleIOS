@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ECSJSONPlaceSearch;
 @interface ECSTableView : UIViewController
-
+-(id)initWithJsonSearch:(ECSJSONPlaceSearch *)search;
 @end

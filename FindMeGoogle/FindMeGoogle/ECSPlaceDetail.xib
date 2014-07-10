@@ -7,7 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ECSPlaceDetail">
             <connections>
                 <outlet property="activity" destination="0UJ-s6-lEb" id="n1K-QB-lMP"/>
+                <outlet property="address" destination="X0a-Mn-A8G" id="z4P-a6-cH2"/>
+                <outlet property="mainActivity" destination="6nT-Uy-YPp" id="NEb-OA-3K5"/>
+                <outlet property="phoneNo" destination="4QS-AU-eEk" id="rjA-oU-0Or"/>
                 <outlet property="placeImage" destination="LK7-K0-jxe" id="rF0-ew-A87"/>
+                <outlet property="placeName" destination="FZt-Ak-0nb" id="oK9-Z8-P1y"/>
                 <outlet property="scrollView" destination="ajS-JK-vIZ" id="r2u-dq-XGr"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -49,7 +53,7 @@
                                             <rect key="frame" x="0.0" y="3" width="44.999999701976776" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X0a-Mn-A8G">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X0a-Mn-A8G">
                                             <rect key="frame" x="53" y="0.0" width="239.99999970197678" height="45"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -107,6 +111,11 @@
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="0UJ-s6-lEb">
                                     <rect key="frame" x="149" y="185" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="6nT-Uy-YPp">
+                                    <rect key="frame" x="142" y="319" width="37" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
