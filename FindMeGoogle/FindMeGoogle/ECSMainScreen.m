@@ -65,10 +65,18 @@
     
         //response
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        NSDictionary * rootDictionary = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: nil];
-        self.searchObject = [ECSJSONPlaceSearch instanceFromDictionary:rootDictionary];
-    
-        [self performSelectorOnMainThread:@selector(switchToMapView) withObject:self waitUntilDone:YES];
+        if(response == nil)
+        {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Response" message:@"Check your connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+        else{
+            NSDictionary * rootDictionary = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: nil];
+            self.searchObject = [ECSJSONPlaceSearch instanceFromDictionary:rootDictionary];
+            
+            [self performSelectorOnMainThread:@selector(switchToMapView) withObject:self waitUntilDone:YES];
+        }
+        
     }
     else
     {
@@ -83,7 +91,7 @@
     [self.navigationController pushViewController:self.mapView animated:YES];
 }
 - (IBAction)clickToMapView:(id)sender {
-    [self performSelectorInBackground:@selector(fetchData:) withObject:@"embassy"];
+    [self performSelectorInBackground:@selector(fetchData:) withObject:@"food"];
     [self.activity startAnimating];
 }
 

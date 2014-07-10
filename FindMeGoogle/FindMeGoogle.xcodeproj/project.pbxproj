@@ -59,6 +59,8 @@
 		8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5B196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m */; };
 		8B5A8E66196D7340005AF45B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5D196D7340005AF45B /* Photo.m */; };
 		8B5A8E67196D7340005AF45B /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5F196D7340005AF45B /* Review.m */; };
+		8B80BA3B196E841900B48695 /* ECSPlaceDetailCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B80BA39196E841900B48695 /* ECSPlaceDetailCustomCell.m */; };
+		8B80BA3C196E841900B48695 /* ECSPlaceDetailCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B80BA3A196E841900B48695 /* ECSPlaceDetailCustomCell.xib */; };
 		8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */; };
 		8B9F6702196BC5760054A060 /* ECSPlaceDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */; };
 		8B9F670D196BCC590054A060 /* ECSJSONPlaceSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F6704196BCC590054A060 /* ECSJSONPlaceSearch.m */; };
@@ -168,6 +170,9 @@
 		8B5A8E5D196D7340005AF45B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		8B5A8E5E196D7340005AF45B /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		8B5A8E5F196D7340005AF45B /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		8B80BA38196E841900B48695 /* ECSPlaceDetailCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSPlaceDetailCustomCell.h; sourceTree = "<group>"; };
+		8B80BA39196E841900B48695 /* ECSPlaceDetailCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSPlaceDetailCustomCell.m; sourceTree = "<group>"; };
+		8B80BA3A196E841900B48695 /* ECSPlaceDetailCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSPlaceDetailCustomCell.xib; sourceTree = "<group>"; };
 		8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSPlaceDetail.h; sourceTree = "<group>"; };
 		8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSPlaceDetail.m; sourceTree = "<group>"; };
 		8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSPlaceDetail.xib; sourceTree = "<group>"; };
@@ -297,6 +302,9 @@
 				8B9F66FE196BC5760054A060 /* ECSPlaceDetail.h */,
 				8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */,
 				8B9F6700196BC5760054A060 /* ECSPlaceDetail.xib */,
+				8B80BA38196E841900B48695 /* ECSPlaceDetailCustomCell.h */,
+				8B80BA39196E841900B48695 /* ECSPlaceDetailCustomCell.m */,
+				8B80BA3A196E841900B48695 /* ECSPlaceDetailCustomCell.xib */,
 				8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */,
 				8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */,
 				8BF77D301967FEA4003E479E /* ECSSettingPage.xib */,
@@ -530,6 +538,7 @@
 			files = (
 				8B2D57A519654AFB0061D4E5 /* InfoPlist.strings in Resources */,
 				8BBA97D8196BD21900BC2E57 /* call.png in Resources */,
+				8B80BA3C196E841900B48695 /* ECSPlaceDetailCustomCell.xib in Resources */,
 				8BBA97D9196BD21900BC2E57 /* home.png in Resources */,
 				8B2D5896196556630061D4E5 /* ECSLandingPage.xib in Resources */,
 				8B2D589B196557090061D4E5 /* ECSMainScreen.xib in Resources */,
@@ -583,6 +592,7 @@
 				8B2D5890196555F60061D4E5 /* UIButton+WebCache.m in Sources */,
 				8B9F6711196BCC590054A060 /* ResultGeometryLocationn.m in Sources */,
 				8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */,
+				8B80BA3B196E841900B48695 /* ECSPlaceDetailCustomCell.m in Sources */,
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
 				8B5A8E61196D7340005AF45B /* Aspect.m in Sources */,
 				8B5A8E60196D7340005AF45B /* AddressComponent.m in Sources */,

@@ -16,11 +16,16 @@
 #import "Photo.h"
 #import "Review.h"
 #import "UIImageView+WebCache.h"
+#import "ECSPlaceDetailCustomCell.h"
 @interface ECSPlaceDetail ()
 <UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *sectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *placeImage;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (weak, nonatomic) IBOutlet UILabel *txtratings;
 @property (nonatomic,retain) NSData *imageData;
 @property (nonatomic,retain) NSString *imageString;
 @property (nonatomic, retain) NSString * place_id;
@@ -32,6 +37,7 @@
 @property (nonatomic,retain) ECSJSONPlaceDetailResult *result;
 @property (nonatomic,retain) Photo *photoArray;
 @property (nonatomic,retain) NSMutableArray *picArray;
+
 @end
 
 @implementation ECSPlaceDetail
@@ -50,29 +56,7 @@
     self.place_id = placeID;
     return self;
 }
--(void)fetchData
-{
-    [self.mainActivity startAnimating];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.place_id];
-    
-    NSURL *requestURL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
-    
-    //response
-    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSDictionary * rootDictionary = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: nil];
-    self.detailObject = [ECSJSONPlaceDetail instanceFromDictionary:rootDictionary];
-    
-    self.result = self.detailObject.result;
-    
-   
-    self.address.text = self.result.formattedAddress;
-    self.phoneNo.text = self.result.formattedPhoneNumber;
-    self.placeName.text = self.result.name;
-    [self performSelectorOnMainThread:@selector(fetchingImage) withObject:self waitUntilDone:YES];
-    [self.mainActivity stopAnimating];
-  
-}
+
 -(void)applyingFetchedResult
 {
 
@@ -81,56 +65,134 @@
 {
     self.picArray = [[NSMutableArray alloc]init];
     self.photoArray = [[Photo alloc]init];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 850);
-    
-    
-    
-   
-    [self.activity startAnimating];
+    self.tableView.tableHeaderView = self.headerView;
     
     [self performSelectorInBackground:@selector(fetchData) withObject:self];
    
     
 }
+-(void)showAlertWithMessage:(NSString*)message
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
+}
+-(void)fetchData
+{
+    NSLog(@"Started fetching the data");
+    [self.mainActivity startAnimating];
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.place_id];
+    NSLog(@"%@",urlString);
+    NSURL *requestURL = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
+    
+    //response
+    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    if(response == nil)
+    {
+        [self showAlertWithMessage:@"Please check your connectivity"];
+    }
+    else
+    {
+        NSDictionary * rootDictionary = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: nil];
+        self.detailObject = [ECSJSONPlaceDetail instanceFromDictionary:rootDictionary];
+        NSLog(@"Parsing over");
+        if([self.detailObject.status isEqualToString:@"OK"])
+        {
+            self.result = self.detailObject.result;
+            
+            
+            self.address.text = self.result.formattedAddress;
+            self.phoneNo.text = self.result.formattedPhoneNumber;
+            self.placeName.text = self.result.name;
+            self.txtratings.text = [NSString stringWithFormat:@"%@",self.result.rating];
+            [self performSelectorOnMainThread:@selector(fetchingImage) withObject:nil waitUntilDone:NO];
+            
+            [self.mainActivity stopAnimating];
+            [self.tableView reloadData];
+        }
+        if([self.detailObject.status isEqualToString:@"ZERO_RESULTS"])
+        {
+            [self showAlertWithMessage:@"zero data found"];
+        }
+        if([self.detailObject.status isEqualToString:@"OVER_QUERY_LIMIT"])
+        {
+            [self showAlertWithMessage:@"request of the day is over quota"];
+        }
+        if([self.detailObject.status isEqualToString:@"REQUEST_DENIED"])
+        {
+            [self showAlertWithMessage:@"application map place search key is not valid"];
+        }
+        if([self.detailObject.status isEqualToString:@"INVALID_REQUEST"])
+        {
+            [self showAlertWithMessage:@"required parameter missing"];
+        }
+        if([self.detailObject.status isEqualToString:@"UNKNOWN_ERROR"])
+        {
+            [self showAlertWithMessage:@"server side error, please try re-launching your app"];
+        }
+
+    }
+    
+    
+    
+   
+    
+}
 -(void)fetchingImage
 {
+    NSLog(@"in fetching image method");
     [self.activity startAnimating];
-   for(Photo * photo in self.result.photos)
-   {
-       self.photoArray = photo;
-   
-       [self.picArray addObject:self.photoArray.photoReference];
-       
-   }
-   
-    [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]]];
-    
-    NSLog(@"%@",[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]);
-    [self.activity stopAnimating];
+    NSLog(@"%@",self.result.photos);
+    if(!(self.result.photos == NULL))
+    {
+        for(Photo * photo in self.result.photos)
+        {
+            self.photoArray = photo;
+            
+            [self.picArray addObject:self.photoArray.photoReference];
+            
+        }
+        NSLog(@"fetching image over");
+        [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]]];
+        [self.activity stopAnimating];
+    }
+    else
+    {
+        [self.activity stopAnimating];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"No image found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+    }
 }
-
-
-
 
 //table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [self.result.reviews count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.textLabel.text = @"this is text";
+    [[NSBundle mainBundle]loadNibNamed:@"ECSPlaceDetailCustomCell" owner:self options:nil];
+    ECSPlaceDetailCustomCell * cell = self.listCell;
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    NSLog(@"%@",self.result.reviews);
+ 
+    [cell bindDataWithReviews:[self.result.reviews objectAtIndex:indexPath.row] andController:self];
     return cell;
 }
 
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return self.sectionView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 99;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

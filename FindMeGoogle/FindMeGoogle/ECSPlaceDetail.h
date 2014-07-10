@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class ECSJSONPlaceSearch;
+@class ECSPlaceDetailCustomCell;
+
 @interface ECSPlaceDetail : UIViewController
 -(id)initWithPlaceId:(NSString *)placeID;
+@property (weak, nonatomic) IBOutlet ECSPlaceDetailCustomCell *listCell;
+
 @end

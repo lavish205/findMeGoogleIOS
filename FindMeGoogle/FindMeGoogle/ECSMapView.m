@@ -17,7 +17,8 @@
 @interface ECSMapView ()
 <GMSMapViewDelegate>
 {
-    GMSMapView *mapView;}
+    GMSMapView *mapView;
+}
 @property (nonatomic,retain) NSString *lat;
 @property (nonatomic,retain) NSString *lng;
 @property (nonatomic,retain) NSMutableArray *placeId;
@@ -59,8 +60,9 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"Switch to Table View" forState:UIControlStateNormal];
     [button sizeToFit];
+    [button setBackgroundColor:[UIColor grayColor]];
     [button addTarget:self action:@selector(switchToTable) forControlEvents:UIControlEventTouchUpInside];
-    button.center = CGPointMake(100, 500);
+    button.center = CGPointMake(160, 500);
     
     //setting camera for viewing the map
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:11];
@@ -116,6 +118,8 @@
 }
 -(void)switchToTable
 {
+   
+
     ECSTableView *tView = [[ECSTableView alloc]initWithJsonSearch:self.searchObject];
  
     [self.navigationController pushViewController:tView animated:YES];
@@ -156,9 +160,13 @@
 
     return NO;
 }
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+
     // Dispose of any resources that can be recreated.
 }
 
