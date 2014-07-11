@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0B9E24196FEAA5001DE8CB /* ECSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B9E23196FEAA5001DE8CB /* ECSHelper.m */; };
 		8B2D579B19654AFB0061D4E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579A19654AFB0061D4E5 /* Foundation.framework */; };
 		8B2D579D19654AFB0061D4E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579C19654AFB0061D4E5 /* CoreGraphics.framework */; };
 		8B2D579F19654AFB0061D4E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579E19654AFB0061D4E5 /* UIKit.framework */; };
@@ -59,6 +60,7 @@
 		8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5B196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m */; };
 		8B5A8E66196D7340005AF45B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5D196D7340005AF45B /* Photo.m */; };
 		8B5A8E67196D7340005AF45B /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A8E5F196D7340005AF45B /* Review.m */; };
+		8B64597D196FD18800308752 /* UIExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B64597C196FD18800308752 /* UIExtensions.m */; };
 		8B80BA3B196E841900B48695 /* ECSPlaceDetailCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B80BA39196E841900B48695 /* ECSPlaceDetailCustomCell.m */; };
 		8B80BA3C196E841900B48695 /* ECSPlaceDetailCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B80BA3A196E841900B48695 /* ECSPlaceDetailCustomCell.xib */; };
 		8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F66FF196BC5760054A060 /* ECSPlaceDetail.m */; };
@@ -88,6 +90,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B0B9E21196FEAA5001DE8CB /* ECSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSConfig.h; sourceTree = "<group>"; };
+		8B0B9E22196FEAA5001DE8CB /* ECSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSHelper.h; sourceTree = "<group>"; };
+		8B0B9E23196FEAA5001DE8CB /* ECSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSHelper.m; sourceTree = "<group>"; };
 		8B2D579719654AFB0061D4E5 /* FindMeGoogle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMeGoogle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2D579A19654AFB0061D4E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B2D579C19654AFB0061D4E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -170,6 +175,8 @@
 		8B5A8E5D196D7340005AF45B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		8B5A8E5E196D7340005AF45B /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		8B5A8E5F196D7340005AF45B /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		8B64597B196FD18800308752 /* UIExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIExtensions.h; sourceTree = "<group>"; };
+		8B64597C196FD18800308752 /* UIExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExtensions.m; sourceTree = "<group>"; };
 		8B80BA38196E841900B48695 /* ECSPlaceDetailCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSPlaceDetailCustomCell.h; sourceTree = "<group>"; };
 		8B80BA39196E841900B48695 /* ECSPlaceDetailCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSPlaceDetailCustomCell.m; sourceTree = "<group>"; };
 		8B80BA3A196E841900B48695 /* ECSPlaceDetailCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSPlaceDetailCustomCell.xib; sourceTree = "<group>"; };
@@ -318,6 +325,11 @@
 		8B2D57A119654AFB0061D4E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B0B9E21196FEAA5001DE8CB /* ECSConfig.h */,
+				8B0B9E22196FEAA5001DE8CB /* ECSHelper.h */,
+				8B0B9E23196FEAA5001DE8CB /* ECSHelper.m */,
+				8B64597B196FD18800308752 /* UIExtensions.h */,
+				8B64597C196FD18800308752 /* UIExtensions.m */,
 				8B2D57A219654AFB0061D4E5 /* FindMeGoogle-Info.plist */,
 				8B2D57A319654AFB0061D4E5 /* InfoPlist.strings */,
 				8B2D57A619654AFB0061D4E5 /* main.m */,
@@ -569,6 +581,7 @@
 			files = (
 				8B2D589A196557090061D4E5 /* ECSMainScreen.m in Sources */,
 				8B2D5895196556630061D4E5 /* ECSLandingPage.m in Sources */,
+				8B0B9E24196FEAA5001DE8CB /* ECSHelper.m in Sources */,
 				8B2D588A196555F60061D4E5 /* UIScrollView+UIScrollViewScrollingDirection.m in Sources */,
 				8B2D588E196555F60061D4E5 /* SDWebImageManager.m in Sources */,
 				8B9F6701196BC5760054A060 /* ECSPlaceDetail.m in Sources */,
@@ -596,6 +609,7 @@
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
 				8B5A8E61196D7340005AF45B /* Aspect.m in Sources */,
 				8B5A8E60196D7340005AF45B /* AddressComponent.m in Sources */,
+				8B64597D196FD18800308752 /* UIExtensions.m in Sources */,
 				8B2D588C196555F60061D4E5 /* SDWebImageDecoder.m in Sources */,
 				8B2D588B196555F60061D4E5 /* SDImageCache.m in Sources */,
 				8B5A8E64196D7340005AF45B /* ECSJSONPlaceDetailResultGeometry.m in Sources */,

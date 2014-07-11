@@ -14,6 +14,8 @@
 #import "ResultGeometryLocationn.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ECSTableView.h"
+#import "ECSConfig.h"
+#import "ECSHelper.h"
 @interface ECSMapView ()
 <GMSMapViewDelegate>
 {
@@ -26,6 +28,7 @@
 @property (nonatomic,retain) NSData *response;
 @property (nonatomic,retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) ECSJSONPlaceSearch * searchObject;
+@property (nonatomic,retain) NSString *radius;
 @end
 
 @implementation ECSMapView
@@ -49,8 +52,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@",self.radius);
+    self.radius = [ECSUserDefault getStringFromUserDefaultForKey:keyRadius];
+    if(self.radius == NULL)
+    {
+        self.radius = @"8000";
+    }
+    NSLog(@"%@",self.radius);
     // Do any additional setup after loading the view from its nib.
-    
+    [self.activity startAnimating];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
@@ -62,10 +72,10 @@
     [button sizeToFit];
     [button setBackgroundColor:[UIColor grayColor]];
     [button addTarget:self action:@selector(switchToTable) forControlEvents:UIControlEventTouchUpInside];
-    button.center = CGPointMake(160, 500);
+    button.center = CGPointMake(160, 100);
     
     //setting camera for viewing the map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:11];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:13];
     
     //adding camera to mapview
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
@@ -86,6 +96,12 @@
     //adding map to application view
     self.view = mapView;
     [mapView addSubview:button];
+    
+    //disabling zoom as it was consuming hell lot of memory
+    mapView.settings.zoomGestures = YES;
+    
+    //disabling rotation of map
+    mapView.settings.rotateGestures = NO;
     
     self.activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.activity setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width/2,[UIScreen mainScreen].bounds.size.height/2)];
@@ -160,7 +176,6 @@
 
     return NO;
 }
-
 
 
 - (void)didReceiveMemoryWarning

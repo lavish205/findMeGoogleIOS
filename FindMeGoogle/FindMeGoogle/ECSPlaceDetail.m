@@ -41,6 +41,7 @@
 @property (nonatomic,retain) ECSJSONPlaceDetailResult *result;
 @property (nonatomic,retain) Photo *photoArray;
 @property (nonatomic,retain) NSMutableArray *picArray;
+@property (weak, nonatomic) IBOutlet UILabel *lblNotFound;
 
 @end
 
@@ -65,6 +66,7 @@
 - (void)viewDidLoad
 {
     count = 0;
+    [self.lblNotFound setHidden:YES];
     self.picArray = [[NSMutableArray alloc]init];
     self.photoArray = [[Photo alloc]init];
     [self.activity stopAnimating];
@@ -91,15 +93,23 @@
     if(count < ([self.picArray count]-1))
     {
         count++;
+        [self.lblNotFound setHidden:YES];
         [UIView animateWithDuration:0.3 animations:^{
             [self.activity startAnimating];
-            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]];
-            [self.activity stopAnimating];
+            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]success:^(UIImage * image, BOOL cached)
+             {[self.activity stopAnimating];} failure:^(NSError * err)
+             {[self.activity stopAnimating];}];
+           
         }];
 
     }
     else
+    {
         NSLog(@"No other image");
+        self.lblNotFound.text = @"Last image from left.";
+        [self.lblNotFound setHidden:NO];
+       
+    }
     
     
 }
@@ -109,15 +119,23 @@
     if(count>0)
     {
         count--;
+        [self.lblNotFound setHidden:YES];
         [UIView animateWithDuration:0.3 animations:^{
             [self.activity startAnimating];
-            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]];
-            [self.activity stopAnimating];
+            [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray  objectAtIndex:count]]]success:^(UIImage * image, BOOL cached)
+             {[self.activity stopAnimating];} failure:^(NSError * err)
+             {[self.activity stopAnimating];}];
+           
         }];
         
     }
     else
+    {
+        self.lblNotFound.text = @"Last image from right.";
+        [self.lblNotFound setHidden:NO];
         NSLog(@"No other image");
+    }
+    
 }
 -(void)showAlertWithMessage:(NSString*)message
 {
@@ -203,8 +221,10 @@
             
         }
         NSLog(@"fetching image over");
-        [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]]];
-        [self.activity stopAnimating];
+        [self.placeImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[self.picArray objectAtIndex:0]]] success:^(UIImage * image, BOOL cached)
+         {[self.activity stopAnimating];} failure:^(NSError * err)
+         {[self.activity stopAnimating];}];
+       
         
         
     }
@@ -254,5 +274,7 @@
 {
     count = 0;
     self.picArray = nil;
+    self.placeImage = nil;
+    self.tableView = nil;
 }
 @end

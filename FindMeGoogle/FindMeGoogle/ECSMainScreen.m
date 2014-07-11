@@ -46,6 +46,9 @@
     self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [self.locationManager startUpdatingLocation];
+    
+  
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +61,7 @@
     NSLog(@"%f,%f",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude);
     if(!(self.locationManager.location.coordinate.latitude == 0.00000 && self.locationManager.location.coordinate.longitude == 0.00000))
     {
-        NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%@&types=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude,@"10000",string];
+        NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%@&types=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude,@"7000",string];
     
         NSURL *requestURL = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
@@ -67,14 +70,14 @@
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         if(response == nil)
         {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Response" message:@"Check your connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"No Response" message:@"Please check your connectivity" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alert show];
         }
         else{
             NSDictionary * rootDictionary = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: nil];
             self.searchObject = [ECSJSONPlaceSearch instanceFromDictionary:rootDictionary];
             
-            [self performSelectorOnMainThread:@selector(switchToMapView) withObject:self waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(switchToMapView) withObject:self waitUntilDone:NO];
         }
         
     }

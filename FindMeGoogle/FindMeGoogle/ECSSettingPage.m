@@ -7,7 +7,9 @@
 //
 
 #import "ECSSettingPage.h"
-
+#import "ECSMapView.h"
+#import "ECSConfig.h"
+#import "ECSHelper.h"
 @interface ECSSettingPage ()
 <UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic,retain) NSMutableArray *rangePrefix;
@@ -113,6 +115,11 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
     NSLog(@" row is %li and component is %li", (long)row,(long)component);
+    if(component == 0)
+    {
+        NSString *value = [self.rangePrefix objectAtIndex:row] ;
+        [ECSUserDefault saveString:value ToUserDefaultForKey:keyRadius];
+    }
 }
 
 
