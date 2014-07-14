@@ -21,8 +21,7 @@
 {
     GMSMapView *mapView;
 }
-@property (nonatomic,retain) NSString *lat;
-@property (nonatomic,retain) NSString *lng;
+
 @property (nonatomic,retain) NSMutableArray *placeId;
 @property (nonatomic,retain) UIActivityIndicatorView *activity;
 @property (nonatomic,retain) NSData *response;
@@ -52,13 +51,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     NSLog(@"%@",self.radius);
     self.radius = [ECSUserDefault getStringFromUserDefaultForKey:keyRadius];
     if(self.radius == NULL)
     {
-        self.radius = @"8000";
+        self.radius = @"5000";
     }
-    NSLog(@"%@",self.radius);
+     CLLocationDegrees lat = (double)[[ECSUserDefault getStringFromUserDefaultForKey:latt] floatValue];
+    CLLocationDegrees lng = (double)[[ECSUserDefault getStringFromUserDefaultForKey:lngg] floatValue];
+
+   
     // Do any additional setup after loading the view from its nib.
     [self.activity startAnimating];
     self.locationManager = [[CLLocationManager alloc] init];
@@ -66,6 +69,11 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [self.locationManager startUpdatingLocation];
 
+    if(lat==0.000000)
+    {
+        lat = self.locationManager.location.coordinate.latitude;
+        lng = self.locationManager.location.coordinate.longitude;
+    }
     //adding button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"Switch to Table View" forState:UIControlStateNormal];
@@ -75,7 +83,7 @@
     button.center = CGPointMake(160, 100);
     
     //setting camera for viewing the map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.locationManager.location.coordinate.latitude	 longitude:self.locationManager.location.coordinate.longitude zoom:13];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat	 longitude:lng zoom:13];
     
     //adding camera to mapview
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
@@ -115,7 +123,7 @@
     }
     if([self.searchObject.status isEqualToString:@"ZERO_RESULTS"])
     {
-        [self showAlertWithMessage:@"zero data found"];
+        [self showAlertWithMessage:@"No Result Found"];
     }
     if([self.searchObject.status isEqualToString:@"OVER_QUERY_LIMIT"])
     {

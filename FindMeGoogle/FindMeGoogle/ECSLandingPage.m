@@ -8,6 +8,7 @@
 
 #import "ECSLandingPage.h"
 #import "ECSMainScreen.h"
+
 @interface ECSLandingPage ()
 
 @property (nonatomic,retain) ECSMainScreen *mainScreen;
@@ -29,6 +30,7 @@
 {
      NSLog(@"hdhdhkd");
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view from its nib.
 }
 

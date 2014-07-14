@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ECSSettingPage">
             <connections>
                 <outlet property="activity" destination="epw-C5-cyO" id="9cC-la-0cU"/>
+                <outlet property="pickerView" destination="IXs-ry-EJH" id="PVJ-2d-fxy"/>
                 <outlet property="settingLowerView" destination="8XU-cT-em5" id="lAv-Et-qDl"/>
                 <outlet property="settingUpperView" destination="VIz-jN-EqY" id="xdv-ht-Q0a"/>
                 <outlet property="tblView" destination="qqV-2v-SJg" id="Ec1-S7-rI7"/>

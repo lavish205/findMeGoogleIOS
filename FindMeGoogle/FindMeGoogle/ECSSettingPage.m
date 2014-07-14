@@ -10,8 +10,10 @@
 #import "ECSMapView.h"
 #import "ECSConfig.h"
 #import "ECSHelper.h"
+#import <CoreLocation/CoreLocation.h>
 @interface ECSSettingPage ()
 <UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (nonatomic,retain) NSMutableArray *rangePrefix;
 @property (nonatomic,retain) NSArray *rangeSufix;
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
@@ -21,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIView *settingLowerView;
 @property (nonatomic,retain) NSMutableArray *resultArray;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (nonatomic,retain) NSString *lat;
+@property (nonatomic,retain) NSString *lng;
+@property (nonatomic,retain)CLLocationManager *locationManager;
+
 - (IBAction)clickToType:(id)sender;
 @end
 
@@ -49,6 +55,16 @@
     }
     self.rangeSufix = [[NSArray alloc]initWithObjects:@"Meter",@"Km", nil];
     [self.activity stopAnimating];
+    NSString *rangeVal = [ECSUserDefault getStringFromUserDefaultForKey:keyRadius];
+    if(rangeVal == nil)
+        rangeVal = @"5000";
+    NSInteger pickerIndex = [self.rangePrefix indexOfObject:rangeVal];
+    [self.pickerView selectRow:pickerIndex inComponent:0 animated:YES];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [self.locationManager startUpdatingLocation];
+    self.txtSearchPlace.text = [ECSUserDefault getStringFromUserDefaultForKey:settingText];
     
     
 }
@@ -58,8 +74,8 @@
 {
     [self.activity startAnimating];
     [self.resultArray removeAllObjects];
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&language=en&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",text];
-    
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&language=en&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSLog(@"%@",urlString);
     NSURL *requestURL = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
     
@@ -68,21 +84,34 @@
 
     
     NSError *jsonParsingError = nil;
-    NSDictionary *placesResult = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
-    NSArray *resposeArray = [[NSArray alloc]init];
-    resposeArray = [placesResult objectForKey:@"predictions"];
-    for (NSDictionary *dict in resposeArray) {
+    if(response==nil)
+    {
+        [ECSAlert showAlert:@"Please check your connectivity"];
+    }
+    else
+    {
+        NSLog(@"%@",urlString);
+        NSDictionary *placesResult = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+        NSArray *resposeArray = [[NSArray alloc]init];
+        resposeArray = [placesResult objectForKey:@"predictions"];
+        for (NSDictionary *dict in resposeArray) {
+            
+            [self.resultArray addObject:[dict valueForKey:@"description"]];
+        }
         
-        [self.resultArray addObject:[dict valueForKey:@"description"]];
+        [self performSelectorOnMainThread:@selector(reloadTable) withObject:self waitUntilDone:YES];
     }
     
-    [self performSelectorOnMainThread:@selector(reloadTable) withObject:self waitUntilDone:YES];
 }
 -(void)reloadTable
 {
     [self.tblView reloadData];
     [self.activity stopAnimating];
 }
+
+
+
+
 //picker view methods
 // returns the number of 'columns' to display in picker view,
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -146,23 +175,102 @@
     self.txtSearchPlace.text = [self.resultArray objectAtIndex:indexPath.row];
 }
 
+-(void)fetchGeoCodeofLocationWithString:(NSString*)string
+{
+    NSLog(@"%@",[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    [self.activity startAnimating];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:(url)];
+    
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    if(response == nil)
+    {
+        [ECSAlert showAlert:@"Please check your connectivity"];
+    }
+    else{
+        NSLog(@"%@",response);
+        NSError *jsonParsingError = nil;
+        NSDictionary *placesResult = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+        NSArray *resposeArray = [[NSArray alloc]init];
+        NSString *status = [[NSString alloc]init];
+        status = [placesResult objectForKey:@"status"];
+        if([status isEqualToString:@"OK"])
+        {
+            resposeArray = [placesResult objectForKey:@"results"];
+            NSLog(@"%@",[resposeArray description]);
+            for (NSDictionary *dict in resposeArray) {
+                
+                //[self.resultArray addObject:[dict valueForKey:@"description"]];
+                NSDictionary *geoDict = [[NSDictionary alloc]init];
+                geoDict = [dict objectForKey:@"geometry"];
+                NSLog(@"%@",[geoDict description]);
+                NSDictionary *loc = [[NSDictionary alloc]init];
+                loc = [geoDict valueForKey:@"location"];
+                self.lat = [loc objectForKey:@"lat"];
+                self.lng =[loc objectForKey:@"lng"];
+                NSLog(@"manual latlong %@,%@",self.lat,self.lng);
+                
+            }
+            
+        }
+        else if ([status isEqualToString:@"ZERO_RESULTS"])
+        {
+            [ECSAlert showAlert:@"No Result Found"];
+            [self setLatLng];
+        }
+        else if ([status isEqualToString:@"OVER_QUERY_LIMIT"])
+        {
+            [ECSAlert showAlert:@"Request of the day is over quota"];
+            [self setLatLng];
+        }
+        else if ([status isEqualToString:@"REQUEST_DENIED"])
+        {
+            [ECSAlert showAlert:@"api key is not valid"];
+            [self setLatLng];
+        }
+        else if ([status isEqualToString:@"INVALID_REQUEST"])
+        {
+            [ECSAlert showAlert:@"Required paramenter are missing"];
+            [self setLatLng];
+        }
+        else if ([status isEqualToString:@"UNKNOWN_ERROR"])
+        {
+            [ECSAlert showAlert:@"Unknown error"];
+            [self setLatLng];
+        }
 
+        
+        
+    }
+    [self.activity stopAnimating];
+}
+
+-(void)setLatLng
+{
+    self.lat = [NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.latitude];
+    self.lng = [NSString stringWithFormat:@"%f",self.locationManager.location.coordinate.longitude];
+}
 
 //textfield delegate method
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
-    if(!((self.txtSearchPlace.text.length)-(range.length)) == 0)
+    if(!self.txtSearchPlace.text.length == 0)
     {
-        NSString *text = self.txtSearchPlace.text;
-        [self.tblView setHidden:NO];
-        [self performSelectorInBackground:@selector(generateRequestForText:) withObject:text];
-       
- 
+        if(!((self.txtSearchPlace.text.length)-(range.length)) == 0)
+        {
+            NSString *text = self.txtSearchPlace.text;
+            [self.tblView setHidden:NO];
+            [self performSelectorInBackground:@selector(generateRequestForText:) withObject:text];
+            
+            
+        }
+        else
+            [self.tblView setHidden:YES];
     }
-    else
-        [self.tblView setHidden:YES];
-    return YES;
+        return YES;
 }
 
 
@@ -178,6 +286,7 @@
         self.settingLowerView.frame = CGRectMake(0, 292, 320, 276);
     }];
     [self.settingUpperView setHidden:NO];
+    [self fetchGeoCodeofLocationWithString:self.txtSearchPlace.text];
 }
 - (IBAction)clickToType:(id)sender {
     [self.settingUpperView setHidden:YES];
@@ -185,5 +294,14 @@
         self.settingLowerView.frame = CGRectMake(0, 70, 320, 276);
     }];
     
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [ECSUserDefault saveString:self.txtSearchPlace.text ToUserDefaultForKey:settingText];
+    if(self.lat == NULL)
+        [self fetchGeoCodeofLocationWithString:self.txtSearchPlace.text];
+    [ECSUserDefault saveString:self.lat ToUserDefaultForKey:latt];
+    [ECSUserDefault saveString:self.lng ToUserDefaultForKey:lngg];
+    NSLog(@"saved latitude %@",self.lat);
 }
 @end

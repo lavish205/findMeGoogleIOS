@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B017632197107E6006E6F73 /* ECSTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B017630197107E6006E6F73 /* ECSTopView.m */; };
+		8B017633197107E6006E6F73 /* ECSTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B017631197107E6006E6F73 /* ECSTopView.xib */; };
 		8B0B9E24196FEAA5001DE8CB /* ECSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B9E23196FEAA5001DE8CB /* ECSHelper.m */; };
+		8B213419197019A000F2E15A /* landing_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B213418197019A000F2E15A /* landing_screen.png */; };
 		8B2D579B19654AFB0061D4E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579A19654AFB0061D4E5 /* Foundation.framework */; };
 		8B2D579D19654AFB0061D4E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579C19654AFB0061D4E5 /* CoreGraphics.framework */; };
 		8B2D579F19654AFB0061D4E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2D579E19654AFB0061D4E5 /* UIKit.framework */; };
@@ -90,9 +93,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B01762F197107E6006E6F73 /* ECSTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSTopView.h; sourceTree = "<group>"; };
+		8B017630197107E6006E6F73 /* ECSTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSTopView.m; sourceTree = "<group>"; };
+		8B017631197107E6006E6F73 /* ECSTopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ECSTopView.xib; sourceTree = "<group>"; };
 		8B0B9E21196FEAA5001DE8CB /* ECSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSConfig.h; sourceTree = "<group>"; };
 		8B0B9E22196FEAA5001DE8CB /* ECSHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSHelper.h; sourceTree = "<group>"; };
 		8B0B9E23196FEAA5001DE8CB /* ECSHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSHelper.m; sourceTree = "<group>"; };
+		8B213418197019A000F2E15A /* landing_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landing_screen.png; sourceTree = "<group>"; };
 		8B2D579719654AFB0061D4E5 /* FindMeGoogle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMeGoogle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B2D579A19654AFB0061D4E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B2D579C19654AFB0061D4E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -315,6 +322,9 @@
 				8BF77D2E1967FEA4003E479E /* ECSSettingPage.h */,
 				8BF77D2F1967FEA4003E479E /* ECSSettingPage.m */,
 				8BF77D301967FEA4003E479E /* ECSSettingPage.xib */,
+				8B01762F197107E6006E6F73 /* ECSTopView.h */,
+				8B017630197107E6006E6F73 /* ECSTopView.m */,
+				8B017631197107E6006E6F73 /* ECSTopView.xib */,
 				8B2D57AC19654AFB0061D4E5 /* Images.xcassets */,
 				8B2D5868196555F60061D4E5 /* Third Party */,
 				8B2D57A119654AFB0061D4E5 /* Supporting Files */,
@@ -465,6 +475,7 @@
 		8BBA97D4196BD21900BC2E57 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8B213418197019A000F2E15A /* landing_screen.png */,
 				8BBA97D5196BD21900BC2E57 /* call.png */,
 				8BBA97D6196BD21900BC2E57 /* home.png */,
 				8BBA97D7196BD21900BC2E57 /* review.png */,
@@ -554,6 +565,7 @@
 				8BBA97D9196BD21900BC2E57 /* home.png in Resources */,
 				8B2D5896196556630061D4E5 /* ECSLandingPage.xib in Resources */,
 				8B2D589B196557090061D4E5 /* ECSMainScreen.xib in Resources */,
+				8B017633197107E6006E6F73 /* ECSTopView.xib in Resources */,
 				8BDF2A5F1967E08D004E4B91 /* ECSTableView.xib in Resources */,
 				8B9F6702196BC5760054A060 /* ECSPlaceDetail.xib in Resources */,
 				8BBA97DA196BD21900BC2E57 /* review.png in Resources */,
@@ -561,6 +573,7 @@
 				8B2D57AD19654AFB0061D4E5 /* Images.xcassets in Resources */,
 				8BF77D321967FEA4003E479E /* ECSSettingPage.xib in Resources */,
 				8B3F068B1966854100FC035A /* ECSMapView.xib in Resources */,
+				8B213419197019A000F2E15A /* landing_screen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +620,7 @@
 				8B5A8E65196D7340005AF45B /* ECSJSONPlaceDetailResultGeometryLocation.m in Sources */,
 				8B80BA3B196E841900B48695 /* ECSPlaceDetailCustomCell.m in Sources */,
 				8B2D588F196555F60061D4E5 /* SDWebImagePrefetcher.m in Sources */,
+				8B017632197107E6006E6F73 /* ECSTopView.m in Sources */,
 				8B5A8E61196D7340005AF45B /* Aspect.m in Sources */,
 				8B5A8E60196D7340005AF45B /* AddressComponent.m in Sources */,
 				8B64597D196FD18800308752 /* UIExtensions.m in Sources */,

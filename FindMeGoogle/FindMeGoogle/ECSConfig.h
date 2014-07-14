@@ -14,4 +14,10 @@
 #define keyRadius                                  @"radius"
 
 #define kAppName                                    @"FindMe"
+
+#define settingText                                 @"settingText"
+
+#define latt                                         @"latt"
+
+#define lngg                                         @"lngg"
 #endif
