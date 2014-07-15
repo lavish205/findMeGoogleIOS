@@ -65,9 +65,26 @@
                                             <state key="normal" title="Detail">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="detailView:" destination="-1" eventType="touchUpInside" id="esv-CI-ZWP"/>
-                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hZv-g3-CuH">
+                                            <rect key="frame" x="165" y="358" width="145" height="145"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.73714717741935487" green="0.39314516129032256" blue="0.17278855846774194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="POLICE">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6YM-Zy-YPa">
+                                            <rect key="frame" x="10" y="358" width="145" height="145"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.31764705879999999" green="0.37666960685483869" blue="0.69720262096774188" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Detail">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="evH-Kp-0sn">
                                             <rect key="frame" x="165" y="50" width="145" height="145"/>
@@ -78,20 +95,26 @@
                                             <state key="normal" title="Setting">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="settingpage:" destination="-1" eventType="touchUpInside" id="Llj-cg-Ojn"/>
-                                            </connections>
                                         </button>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="4CB-eX-mNj">
                                             <rect key="frame" x="142" y="230" width="37" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="color" red="0.074509806931018829" green="0.15294118225574493" blue="0.28235295414924622" alpha="1" colorSpace="deviceRGB"/>
                                         </activityIndicatorView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="6pc-w1-uhH">
+                                            <rect key="frame" x="278" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <connections>
+                                                <action selector="settingpage:" destination="-1" eventType="touchUpInside" id="Nvh-ff-IPo"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </scrollView>
                                 <searchBar contentMode="redraw" placeholder="Find Me What?" id="mnS-Pr-jkJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="10" y="0.0" width="257" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" red="0.14752394153225806" green="0.37632308467741937" blue="0.265625" alpha="1" colorSpace="calibratedRGB"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                             </subviews>

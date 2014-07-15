@@ -52,7 +52,7 @@
 {
     [super viewDidLoad];
 
-    NSLog(@"%@",self.radius);
+    
     self.radius = [ECSUserDefault getStringFromUserDefaultForKey:keyRadius];
     if(self.radius == NULL)
     {

@@ -105,8 +105,8 @@
     [cell.imageView setImageWithURL:url];
 //    NSLog(@"lat %@",[self.lat description]);
 //    NSLog(@"lng %@",[self.lng description]);
-//    CLLocationDegrees lat = [[self.lat objectAtIndex:indexPath.row]integerValue];
-//    CLLocationDegrees lng = [[self.lng objectAtIndex:indexPath.row]integerValue];
+//    CLLocationDegrees lat = [[self.lat objectAtIndex:indexPath.row]doubleValue];
+//    CLLocationDegrees lng = [[self.lng objectAtIndex:indexPath.row]doubleValue];
 //    CLLocationDegrees lat1 = self.locationManager.location.coordinate.latitude;
 //    CLLocationDegrees lat2 = self.locationManager.location.coordinate.longitude;
 //    

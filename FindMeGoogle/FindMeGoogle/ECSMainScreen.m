@@ -25,7 +25,7 @@
 @property (nonatomic,retain) NSString *radius;
 - (IBAction)clickToMapView:(id)sender;
 - (IBAction)settingpage:(id)sender;
-- (IBAction)detailView:(id)sender;
+
 @property CLLocationDegrees lat;
 @property CLLocationDegrees Lng;
 @end
@@ -44,6 +44,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.lat = [[ECSUserDefault getStringFromUserDefaultForKey:latt] doubleValue];
+    self.lng = [[ECSUserDefault getStringFromUserDefaultForKey:lngg] doubleValue];
     
     // Do any additional setup after loading the view from its nib.
     [self.activity stopAnimating];
@@ -59,8 +61,7 @@
     {
         self.radius = @"5000";
     }
-    self.lat = (double)[[ECSUserDefault getStringFromUserDefaultForKey:latt] floatValue];
-    self.lng = (double)[[ECSUserDefault getStringFromUserDefaultForKey:lngg] floatValue];
+    
     if(self.lat==0.000000)
     {
         self.lat = self.locationManager.location.coordinate.latitude;
@@ -79,7 +80,10 @@
     NSLog(@"user location : %f,%f",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude);
     if(!(self.locationManager.location.coordinate.latitude == 0.00000 && self.locationManager.location.coordinate.longitude == 0.00000))
     {
+        NSLog(@"fetching place data of %f,%f",self.lat,self.Lng);
+        
         NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%@&types=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.lat,self.Lng,self.radius,string];
+        NSLog(@"data will be shown of %f,%f",self.lat,self.Lng);
     
         NSURL *requestURL = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:(requestURL)];
@@ -121,10 +125,6 @@
     [self.navigationController pushViewController:self.settingPage animated:NO];
 }
 
-- (IBAction)detailView:(id)sender {
-    self.tableView = [[ECSTableView alloc]initWithNibName:@"ECSTableView" bundle:nil];
-    [self.navigationController pushViewController:self.tableView animated:YES];
-}
 -(void)viewWillDisappear:(BOOL)animated
 {
     //[self.navigationController setNavigationBarHidden:YES];
