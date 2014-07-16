@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ECSMainScreenCustomCell;
 @interface ECSMainScreen : UIViewController
-
+@property (nonatomic,strong) IBOutlet ECSMainScreenCustomCell *cellView;
+-(void)fetchData:(NSString*)string;
 @end
