@@ -11,6 +11,7 @@
 #import "ECSMainScreen.h"
 #import "UIExtensions.h"
 @interface ECSMainScreenCustomCell ()
+<UITextFieldDelegate>
 - (IBAction)clkto0:(id)sender;
 - (IBAction)clkto1:(id)sender;
 - (IBAction)clkto3:(id)sender;

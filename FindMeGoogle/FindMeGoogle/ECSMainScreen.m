@@ -17,18 +17,19 @@
 #import "ECSMainScreenCustomCell.h"
 
 @interface ECSMainScreen ()
-<UITableViewDataSource,UITableViewDelegate>
+<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic,retain) ECSMapView *mapView;
 @property (nonatomic,retain)ECSSettingPage *settingPage;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,retain)NSArray *placeName;
+@property (nonatomic,retain)NSArray *displayArray;
 @property (nonatomic,retain) CLLocationManager *locationManager;
 @property (nonatomic,retain) ECSJSONPlaceSearch *searchObject;
 @property (nonatomic,retain) NSString *radius;
 
 @property (nonatomic,retain) NSMutableArray *customArray;
-- (IBAction)clickToMapView:(id)sender;
+
 - (IBAction)settingpage:(id)sender;
 
 @property CLLocationDegrees lat;
@@ -75,9 +76,9 @@
         self.lng = self.locationManager.location.coordinate.longitude;
         NSLog(@"%f,%f",self.lat,self.Lng);
     }
-    NSArray *placeName = [[NSArray alloc]initWithObjects:@"accounting",@"airport",@"amusement_park",@"aquarium",@"art_gallery",@"atm",@"bakery",@"bank",@"bar",@"beauty_salon",@"bicycle_store",@"book_store",@"bowling_alley",@"bus_station",@"cafe",@"campground",@"car_dealer",@"car_rental",@"car_repair",@"car_wash",@"casino",@"cemetery",@"church",@"city_hall",@"clothing_store",@"convenience_store",@"courthouse",@"dentist",@"department_store",@"doctor",@"electrician",@"electronics_store",@"embassy",@"establishment",@"finance",@"fire_station",@"florist",@"food",@"funeral_home",@"furniture_store",@"gas_station",@"general_contractor",@"grocery_or_supermarket",@"gym",@"hair_care",@"hardware_store",@"health",@"hindu_temple",@"home_goods_store",@"hospital",@"insurance_agency",@"jewelry_store",@"laundry",@"lawyer",@"library",@"liquor_store",@"local_government_office",@"locksmith",@"lodging",@"meal_delivery",@"meal_takeaway",@"mosque",@"movie_rental",@"movie_theater",@"moving_company",@"museum",@"night_club",@"painter",@"park",@"parking",@"pet_store",@"pharmacy",@"physiotherapist",@"place_of_worship",@"plumber",@"police",@"post_office",@"real_estate_agency",@"restaurant",@"roofing_contractor",@"rv_park",@"school",@"shoe_store",@"shopping_mall",@"spa",@"stadium",@"storage",@"store",@"subway_station",@"synagogue",@"taxi_stand",@"train_station",@"travel_agency",@"university",@"veterinary_care",@"zoo", nil];
+    self.placeName = [[NSArray alloc]initWithObjects:@"accounting",@"airport",@"amusement_park",@"aquarium",@"art_gallery",@"atm",@"bakery",@"bank",@"bar",@"beauty_salon",@"bicycle_store",@"book_store",@"bowling_alley",@"bus_station",@"cafe",@"campground",@"car_dealer",@"car_rental",@"car_repair",@"car_wash",@"casino",@"cemetery",@"church",@"city_hall",@"clothing_store",@"convenience_store",@"courthouse",@"dentist",@"department_store",@"doctor",@"electrician",@"electronics_store",@"embassy",@"establishment",@"finance",@"fire_station",@"florist",@"food",@"funeral_home",@"furniture_store",@"gas_station",@"general_contractor",@"grocery_or_supermarket",@"gym",@"hair_care",@"hardware_store",@"health",@"hindu_temple",@"home_goods_store",@"hospital",@"insurance_agency",@"jewelry_store",@"laundry",@"lawyer",@"library",@"liquor_store",@"local_government_office",@"locksmith",@"lodging",@"meal_delivery",@"meal_takeaway",@"mosque",@"movie_rental",@"movie_theater",@"moving_company",@"museum",@"night_club",@"painter",@"park",@"parking",@"pet_store",@"pharmacy",@"physiotherapist",@"place_of_worship",@"plumber",@"police",@"post_office",@"real_estate_agency",@"restaurant",@"roofing_contractor",@"rv_park",@"school",@"shoe_store",@"shopping_mall",@"spa",@"stadium",@"storage",@"store",@"subway_station",@"synagogue",@"taxi_stand",@"train_station",@"travel_agency",@"university",@"veterinary_care",@"zoo", nil];
     self.customArray = [[NSMutableArray alloc]init];
-    self.customArray = [self splittingArray:placeName];
+    self.customArray = [self splittingArray:self.placeName];
     if(!(self.locationManager.location.coordinate.latitude == 0.00000 && self.locationManager.location.coordinate.longitude == 0.00000))
     {
     
@@ -87,6 +88,55 @@
         [ECSAlert showAlert:@"GPS on krle bhai"];
     }
 
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    //  [self.imgViewSearchIcon setHidden:YES];
+    
+    NSString *keyString=[textField.text stringByAppendingString:string];
+    if([string isEqualToString:@""])
+    {
+        keyString=[textField.text substringToIndex:[textField.text length]-1];
+        NSLog(@"%@",keyString);
+        if([keyString isEqualToString:@""])
+        {
+            //[self.displayArray removeAllObjects];
+            [self.tableView reloadData];
+           
+        }
+        else{
+            [self.tableView reloadData];
+        }
+    }
+    
+    else{
+        self.displayArray=[self managingDisplayArrayFromArray:self.placeName withKey:keyString];
+        NSLog(@"%@",[self.displayArray description]);
+        self.customArray = [self splittingArray:self.displayArray];
+        [self.tableView reloadData];
+        
+//        if(self.rng.length > range.length)
+//        {
+//            [self.displayArray removeLastObject];
+//            [self.tblSearch reloadData];
+//        }
+//        
+//        self.rng = range;
+    }     return YES;
+}
+-(NSMutableArray *)managingDisplayArrayFromArray:(NSArray *)totalArray withKey:(NSString *)key
+{
+    NSMutableArray *ary=[[NSMutableArray alloc]init];
+    key=[key lowercaseString];
+    for (NSString *str in totalArray)
+    {
+        NSRange range = [str rangeOfString:key];
+        if (range.location != NSNotFound )
+            [ary addObject:str];
+        
+    }
+    return ary;
 }
 -(NSMutableArray *)splittingArray:(NSArray *)array
 {
