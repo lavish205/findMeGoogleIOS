@@ -95,9 +95,14 @@
                             <action selector="clkto5:" destination="Wf0-Xz-Lbo" eventType="touchUpInside" id="iyi-gV-eWX"/>
                         </connections>
                     </button>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="6P4-2D-jRA">
+                        <rect key="frame" x="132" y="208" width="37" height="37"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activity" destination="6P4-2D-jRA" id="pDe-4T-pnY"/>
                 <outlet property="btn0" destination="IJa-0w-NAm" id="gdt-fo-ZGt"/>
                 <outlet property="btn1" destination="ygz-zX-pyO" id="VWJ-FF-Acb"/>
                 <outlet property="btn2" destination="kTL-NF-5zw" id="8h1-a9-cKb"/>

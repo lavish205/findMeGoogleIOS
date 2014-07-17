@@ -10,5 +10,5 @@
 
 
 @interface ECSMainScreenCustomCell : UITableViewCell
--(void)bindDataWithArray:(NSArray *)array;
+-(void)bindDataWithArray:(NSArray *)array andController:(UIViewController *)controller;
 @end

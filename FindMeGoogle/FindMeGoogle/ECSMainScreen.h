@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class ECSMainScreenCustomCell;
 @interface ECSMainScreen : UIViewController
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (nonatomic,strong) IBOutlet ECSMainScreenCustomCell *cellView;
 -(void)fetchData:(NSString*)string;
+
 @end

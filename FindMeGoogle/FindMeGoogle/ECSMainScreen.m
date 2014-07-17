@@ -26,7 +26,7 @@
 @property (nonatomic,retain) CLLocationManager *locationManager;
 @property (nonatomic,retain) ECSJSONPlaceSearch *searchObject;
 @property (nonatomic,retain) NSString *radius;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+
 @property (nonatomic,retain) NSMutableArray *customArray;
 - (IBAction)clickToMapView:(id)sender;
 - (IBAction)settingpage:(id)sender;
@@ -48,12 +48,14 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    [self.activity stopAnimating];
     self.lat = [[ECSUserDefault getStringFromUserDefaultForKey:latt] doubleValue];
     self.lng = [[ECSUserDefault getStringFromUserDefaultForKey:lngg] doubleValue];
     
     // Do any additional setup after loading the view from its nib.
-    [self.activity stopAnimating];
+   
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
@@ -110,11 +112,20 @@
 -(void)fetchData:(NSString*)string
 {
     NSLog(@"%@",string);
-    NSLog(@"user location : %f,%f",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude);
-    if(!(self.locationManager.location.coordinate.latitude == 0.00000 && self.locationManager.location.coordinate.longitude == 0.00000))
+    [self.activity startAnimating];
+    self.lat = [[ECSUserDefault getStringFromUserDefaultForKey:latt] doubleValue];
+    self.lng = [[ECSUserDefault getStringFromUserDefaultForKey:lngg] doubleValue];
+    if(self.lat==0.000000)
     {
-        NSLog(@"fetching place data of %f,%f",self.lat,self.Lng);
-        
+        self.lat = self.locationManager.location.coordinate.latitude;
+        self.lng = self.locationManager.location.coordinate.longitude;
+        NSLog(@"%f,%f",self.lat,self.Lng);
+    }
+    
+    NSLog(@"user location : %f,%f",self.locationManager.location.coordinate.latitude,self.locationManager.location.coordinate.longitude);
+    if(!(self.lat == 0.00000 && self.Lng == 0.00000))
+    {
+
         NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%@&types=%@&key=AIzaSyA0m675cHvtgbQr4EWWtTF9nNYLtJqpdh4",self.lat,self.Lng,self.radius,string];
         NSLog(@"data will be shown of %f,%f",self.lat,self.Lng);
     
@@ -133,7 +144,7 @@
             self.searchObject = [ECSJSONPlaceSearch instanceFromDictionary:rootDictionary];
             
            // [self performSelectorOnMainThread:@selector(switchToMapView) withObject:self waitUntilDone:NO];
-            [self switchToMapView];
+            [self performSelectorOnMainThread:@selector(switchToMapView) withObject:nil waitUntilDone:YES];
         }
         
     }
@@ -142,6 +153,10 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please On your GPS and try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
+    
+    
+    [self.tableView reloadData];
+    
 }
 
 
@@ -160,7 +175,8 @@
     
     ECSMainScreenCustomCell * cell = self.cellView;
     
-    [cell bindDataWithArray:[self.customArray objectAtIndex:indexPath.row]];
+    [cell bindDataWithArray:[self.customArray objectAtIndex:indexPath.row] andController:self];
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 
@@ -171,10 +187,6 @@
     self.mapView = [[ECSMapView alloc]initWithJsonSearch:self.searchObject];
     [self.activity stopAnimating];
     [self.navigationController pushViewController:self.mapView animated:YES];
-}
-- (IBAction)clickToMapView:(id)sender {
-    [self performSelectorInBackground:@selector(fetchData:) withObject:@"food"];
-    [self.activity startAnimating];
 }
 
 - (IBAction)settingpage:(id)sender {

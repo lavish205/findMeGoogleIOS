@@ -55,8 +55,8 @@
                                         <outlet property="delegate" destination="-1" id="TQe-PR-sY8"/>
                                     </connections>
                                 </tableView>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="Bhs-1a-uar">
-                                    <rect key="frame" x="150" y="239" width="20" height="20"/>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="Bhs-1a-uar">
+                                    <rect key="frame" x="147" y="230" width="37" height="37"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="color" red="0.0" green="0.023529411760000001" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </activityIndicatorView>

@@ -83,7 +83,7 @@
     button.center = CGPointMake(160, 100);
     
     //setting camera for viewing the map
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat	 longitude:lng zoom:13];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat	 longitude:lng zoom:11];
     
     //adding camera to mapview
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
